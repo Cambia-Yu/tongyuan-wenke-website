@@ -1,0 +1,56 @@
+/* TYWK/Feedback/SubmitSuccess — 提交成功 */
+
+.tywk-submit-success {
+  padding: var(--tywk-space-8) var(--tywk-space-6);
+  border-radius: var(--tywk-radius-xl);
+  background: var(--tywk-paper);
+}
+
+.tywk-submit-success__kicker {
+  display: flex;
+  align-items: center;
+  gap: var(--tywk-space-2);
+  font-size: var(--tywk-text-caption-size);
+  color: var(--tywk-text-tertiary);
+}
+
+.tywk-submit-success__mark {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--tywk-radius-full);
+  background: var(--tywk-success-soft);
+  color: var(--tywk-success);
+}
+
+.tywk-submit-success__title {
+  margin: var(--tywk-space-3) 0 0;
+  font-family: var(--tywk-font-sans);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--tywk-text-primary);
+}
+
+.tywk-submit-success__body {
+  margin: var(--tywk-space-3) 0 0;
+  max-width: 32rem;
+  font-size: var(--tywk-text-small-size);
+  line-height: var(--tywk-text-small-line);
+  color: var(--tywk-text-secondary);
+}
+
+.tywk-submit-success__action {
+  margin-top: var(--tywk-space-6);
+}
+
+/* 进入时整体轻微上移浮现一次，不循环 */
+.tywk-submit-success--enter {
+  animation: tywk-content-enter var(--tywk-motion-slow) var(--tywk-ease-standard) both;
+}
+
+@keyframes tywk-content-enter {
+  from { opacity: 0; transform: translateY(var(--tywk-motion-distance)); }
+  to { opacity: 1; transform: translateY(0); }
+}

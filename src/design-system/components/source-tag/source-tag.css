@@ -1,0 +1,23 @@
+/* TYWK/Status/SourceTag — 来源标签 */
+
+.tywk-source-tag {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--tywk-space-2);
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: var(--tywk-radius-sm);
+  background: var(--tywk-paper);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+  font-family: var(--tywk-font-sans);
+  font-size: var(--tywk-text-caption-size);
+  line-height: 1.5;
+  color: var(--tywk-text-secondary);
+}
+
+.tywk-source-tag__index {
+  font-size: 0.625rem;
+  letter-spacing: 0.04em;
+  color: var(--tywk-text-quaternary);
+  font-variant-numeric: tabular-nums;
+}

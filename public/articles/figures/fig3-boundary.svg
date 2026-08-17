@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <style>
+      .t { font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif; }
+      .label { fill: rgba(0,0,0,0.85); font-size: 14px; font-weight: 600; }
+      .item { fill: rgba(0,0,0,0.65); font-size: 12.5px; }
+      .small { fill: rgba(0,0,0,0.5); font-size: 11.5px; }
+      .accent { fill: #1783ff; font-size: 12px; font-weight: 600; }
+      .cap { fill: rgba(0,0,0,0.4); font-size: 11px; }
+    </style>
+  </defs>
+  <rect width="800" height="420" fill="#ffffff"/>
+
+  <text class="t cap" x="24" y="30">图 3 · 模型与规则的职责边界——语义归模型，数值归规则</text>
+
+  <!-- 左：模型 -->
+  <rect x="24" y="56" width="356" height="220" rx="8" fill="#ffffff" stroke="rgba(0,0,0,0.13)"/>
+  <text class="t label" x="44" y="88">模型负责 · 语义</text>
+  <text class="t small" x="44" y="108">理解、解释、建议——非确定性任务</text>
+  <text class="t item" x="44" y="142">· 合同条款理解与摘要</text>
+  <text class="t item" x="44" y="168">· 结算口径的解释与说明</text>
+  <text class="t item" x="44" y="194">· 对供应商的沟通口径建议</text>
+  <text class="t item" x="44" y="220">· 计算结果的可读化呈现</text>
+  <text class="t small" x="44" y="252">输出均为建议，由业务确认后生效</text>
+
+  <!-- 右：规则 -->
+  <rect x="420" y="56" width="356" height="220" rx="8" fill="rgba(23,131,255,0.04)" stroke="#1783ff" stroke-opacity="0.4"/>
+  <text class="t label" x="440" y="88" fill="#1783ff">规则负责 · 数值</text>
+  <text class="t small" x="440" y="108">计算、校验、复算——确定性任务</text>
+  <text class="t item" x="440" y="142">· 金额比对（规则引擎 + SQL 模板）</text>
+  <text class="t item" x="440" y="168">· 税额与精度核算</text>
+  <text class="t item" x="440" y="194">· 进入结论前的二次校验</text>
+  <text class="t item" x="440" y="220">· 全链路可复算、可审计</text>
+  <text class="t accent" x="440" y="252">所有进入结论的数值必须经规则侧校验</text>
+
+  <!-- 中间边界线 -->
+  <line x1="400" y1="72" x2="400" y2="260" stroke="rgba(0,0,0,0.15)" stroke-dasharray="3 4"/>
+
+  <!-- 人做判断 -->
+  <line x1="202" y1="276" x2="202" y2="312" stroke="rgba(0,0,0,0.25)"/>
+  <line x1="598" y1="276" x2="598" y2="312" stroke="rgba(0,0,0,0.25)"/>
+  <rect x="216" y="312" width="368" height="52" rx="8" fill="#ffffff" stroke="rgba(0,0,0,0.2)"/>
+  <text class="t label" x="240" y="344">人做判断：金额认定 · 说明采信 · 结论确认</text>
+
+  <!-- 决策转向注记 -->
+  <text class="t cap" x="24" y="396">注：该边界源于一次测试事故——模型直接推导金额时出现税率精度偏差（数千元级），随即整条计算链路移交规则引擎。</text>
+</svg>

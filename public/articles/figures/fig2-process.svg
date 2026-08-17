@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="360" viewBox="0 0 800 360">
+  <defs>
+    <style>
+      .t { font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif; }
+      .num { fill: rgba(0,0,0,0.35); font-size: 12px; }
+      .label { fill: rgba(0,0,0,0.85); font-size: 14px; font-weight: 600; }
+      .small { fill: rgba(0,0,0,0.5); font-size: 11.5px; }
+      .accent { fill: #1783ff; font-size: 11.5px; font-weight: 600; }
+      .cap { fill: rgba(0,0,0,0.4); font-size: 11px; }
+    </style>
+  </defs>
+  <rect width="800" height="360" fill="#ffffff"/>
+
+  <text class="t cap" x="24" y="30">图 2 · 异常处理四阶段拆解——瓶颈在第二、三阶段</text>
+
+  <!-- 阶段 1 -->
+  <rect x="24" y="60" width="168" height="130" rx="8" fill="#ffffff" stroke="rgba(0,0,0,0.13)"/>
+  <text class="t num" x="40" y="88">阶段 1</text>
+  <text class="t label" x="40" y="112">发现异常</text>
+  <text class="t small" x="40" y="136">识别系统金额与</text>
+  <text class="t small" x="40" y="154">报送金额的差异</text>
+  <text class="t cap" x="40" y="176">耗时：立即可见</text>
+
+  <!-- 箭头 -->
+  <line x1="196" y1="125" x2="222" y2="125" stroke="rgba(0,0,0,0.3)"/>
+  <polygon points="222,125 214,121 214,129" fill="rgba(0,0,0,0.3)"/>
+
+  <!-- 阶段 2：瓶颈 -->
+  <rect x="226" y="60" width="168" height="130" rx="8" fill="rgba(23,131,255,0.05)" stroke="#1783ff" stroke-opacity="0.5"/>
+  <text class="t num" x="242" y="88">阶段 2</text>
+  <text class="t label" x="242" y="112">拉齐信息</text>
+  <text class="t small" x="242" y="136">对齐多系统中的合同、</text>
+  <text class="t small" x="242" y="154">订单、回单与历史记录</text>
+  <text class="t accent" x="242" y="176">主要瓶颈：命名与口径不一致</text>
+
+  <line x1="398" y1="125" x2="424" y2="125" stroke="rgba(0,0,0,0.3)"/>
+  <polygon points="424,125 416,121 416,129" fill="rgba(0,0,0,0.3)"/>
+
+  <!-- 阶段 3：次瓶颈 -->
+  <rect x="428" y="60" width="168" height="130" rx="8" fill="rgba(23,131,255,0.03)" stroke="#1783ff" stroke-opacity="0.3"/>
+  <text class="t num" x="444" y="88">阶段 3</text>
+  <text class="t label" x="444" y="112">形成结论</text>
+  <text class="t small" x="444" y="136">确定结算口径（合同或</text>
+  <text class="t small" x="444" y="154">补充说明、含税、币种）</text>
+  <text class="t accent" x="444" y="176" opacity="0.75">次瓶颈：依赖信息是否对齐</text>
+
+  <line x1="600" y1="125" x2="626" y2="125" stroke="rgba(0,0,0,0.3)"/>
+  <polygon points="626,125 618,121 618,129" fill="rgba(0,0,0,0.3)"/>
+
+  <!-- 阶段 4 -->
+  <rect x="630" y="60" width="146" height="130" rx="8" fill="#ffffff" stroke="rgba(0,0,0,0.13)"/>
+  <text class="t num" x="646" y="88">阶段 4</text>
+  <text class="t label" x="646" y="112">留痕归档</text>
+  <text class="t small" x="646" y="136">固化处理人、</text>
+  <text class="t small" x="646" y="154">依据与结论</text>
+  <text class="t cap" x="646" y="176">短，但长期被省略</text>
+
+  <!-- 耗时示意条 -->
+  <text class="t cap" x="24" y="226">阶段耗时占比（上线前，约两个工作日的构成）</text>
+  <rect x="24" y="240" width="56" height="20" rx="4" fill="rgba(0,0,0,0.06)"/>
+  <rect x="84" y="240" width="420" height="20" rx="4" fill="rgba(23,131,255,0.25)"/>
+  <rect x="508" y="240" width="216" height="20" rx="4" fill="rgba(23,131,255,0.12)"/>
+  <rect x="728" y="240" width="48" height="20" rx="4" fill="rgba(0,0,0,0.06)"/>
+  <text class="t cap" x="88" y="254" fill="#ffffff"> </text>
+
+  <text class="t small" x="24" y="284">发现</text>
+  <text class="t small" x="300" y="284" fill="#1783ff">拉齐信息（约六成）</text>
+  <text class="t small" x="560" y="284" fill="#1783ff" opacity="0.8">形成结论（约三成）</text>
+  <text class="t small" x="730" y="284">归档</text>
+
+  <text class="t cap" x="24" y="330">拆解使瓶颈位置可见：自动化投入集中在阶段 2 的上下文拉齐，而非全链路。</text>
+</svg>

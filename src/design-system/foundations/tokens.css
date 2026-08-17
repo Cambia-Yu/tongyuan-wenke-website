@@ -1,0 +1,125 @@
+/* ============================================================
+   通元问科设计系统 · Foundations Tokens
+   位置：src/design-system/foundations/tokens.css
+   规则：所有 TYWK 组件只允许使用这里的变量，不写死色值。
+   ============================================================ */
+
+:root {
+  /* ---------- Color · 背景与填充 ---------- */
+  --tywk-page-bg: #ffffff;            /* 页面背景 */
+  --tywk-surface: #ffffff;            /* 内容背景（卡片、浮层） */
+  --tywk-paper: #f4f5f3;              /* 纸面填充（导航条、分区底） */
+  --tywk-paper-deep: #eef2ee;         /* 更深的分区底 */
+  --tywk-fill-1: rgba(0, 0, 0, 0.03); /* 一级填充 / hover */
+  --tywk-fill-2: rgba(0, 0, 0, 0.05); /* 二级填充 / active */
+  --tywk-dark-surface: #121212;       /* 深色区域（页脚等） */
+
+  /* ---------- Color · 文字 ---------- */
+  --tywk-text-primary: rgba(0, 0, 0, 0.9);
+  --tywk-text-secondary: rgba(0, 0, 0, 0.6);
+  --tywk-text-tertiary: rgba(0, 0, 0, 0.45);
+  --tywk-text-quaternary: rgba(0, 0, 0, 0.3);
+  --tywk-text-on-dark: rgba(255, 255, 255, 0.84);
+  --tywk-text-on-dark-secondary: rgba(255, 255, 255, 0.56);
+
+  /* ---------- Color · 边界 ---------- */
+  --tywk-separator: rgba(0, 0, 0, 0.13);        /* 明确分隔线 */
+  --tywk-border-subtle: rgba(0, 0, 0, 0.06);    /* 弱化边界 */
+  --tywk-border-dark: rgba(255, 255, 255, 0.12);
+
+  /* ---------- Color · 品牌强调 ---------- */
+  --tywk-accent: #416f59;              /* 品牌绿：链接态、导航激活线 */
+  --tywk-accent-deep: #2c5643;         /* 品牌绿加深：强调文字、标记点 */
+  --tywk-accent-soft: rgba(65, 111, 89, 0.1);  /* 品牌绿浅底 */
+  --tywk-ink: rgba(0, 0, 0, 0.9);      /* 主按钮底 */
+  --tywk-ink-hover: #252525;           /* 主按钮 hover */
+
+  /* ---------- Color · 状态 ---------- */
+  --tywk-success: #3f7a5e;
+  --tywk-success-soft: rgba(63, 122, 94, 0.1);
+  --tywk-warning: #a15c1f;
+  --tywk-warning-soft: rgba(161, 92, 31, 0.1);
+  --tywk-error: #b4232f;
+  --tywk-error-soft: rgba(180, 35, 47, 0.08);
+  --tywk-disabled-text: var(--tywk-text-quaternary);
+  --tywk-disabled-bg: var(--tywk-fill-1);
+  --tywk-focus-ring: rgba(22, 99, 74, 0.75);
+
+  /* ---------- Typography ---------- */
+  --tywk-font-serif: 'Noto Serif SC Variable', 'Source Han Serif SC', 'Noto Serif CJK SC', 'Songti SC', 'STSong', serif;
+  --tywk-font-sans: 'Hiragino Sans GB', 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif;
+
+  /* 字阶：字号 / 行高 / 字重 */
+  --tywk-text-display-size: 2.5rem;    /* 品牌标题（首页首屏） */
+  --tywk-text-display-line: 1.25;
+  --tywk-text-page-size: 2rem;         /* 页面标题 */
+  --tywk-text-page-line: 1.3;
+  --tywk-text-section-size: 1.5rem;    /* 章节标题 */
+  --tywk-text-section-line: 1.4;
+  --tywk-text-card-size: 1.0625rem;    /* 卡片标题 */
+  --tywk-text-card-line: 1.5;
+  --tywk-text-body-size: 1rem;         /* 正文 */
+  --tywk-text-body-line: 1.8;
+  --tywk-text-small-size: 0.875rem;    /* 辅助文字 */
+  --tywk-text-small-line: 1.65;
+  --tywk-text-caption-size: 0.75rem;   /* 标签 / 说明 */
+  --tywk-text-caption-line: 1.5;
+  --tywk-text-data-size: 0.8125rem;    /* 数据与编号 */
+
+  /* ---------- Spacing（4px 基网） ---------- */
+  --tywk-space-1: 0.25rem;
+  --tywk-space-2: 0.5rem;
+  --tywk-space-3: 0.75rem;
+  --tywk-space-4: 1rem;
+  --tywk-space-6: 1.5rem;
+  --tywk-space-8: 2rem;
+  --tywk-space-12: 3rem;
+  --tywk-space-16: 4rem;
+  --tywk-space-24: 6rem;
+
+  /* ---------- Layout ---------- */
+  --tywk-content-max: 72rem;           /* 内容最大宽度 max-w-6xl */
+  --tywk-prose-max: 46rem;             /* 长文章舒适行宽 */
+  --tywk-page-gutter: 1rem;            /* 页面左右留白（移动端） */
+  --tywk-page-gutter-lg: 2rem;         /* 页面左右留白（桌面端） */
+
+  /* ---------- Radius ---------- */
+  --tywk-radius-sm: 0.5rem;    /* 8  小控件、标签 */
+  --tywk-radius-md: 0.75rem;   /* 12 按钮、输入框、菜单项 */
+  --tywk-radius-lg: 1rem;      /* 16 卡片、浮层 */
+  --tywk-radius-xl: 1.25rem;   /* 20 大型卡片 */
+  --tywk-radius-2xl: 1.5rem;   /* 24 页面级容器 */
+  --tywk-radius-full: 999px;   /* 胶囊、头像、状态点 */
+
+  /* ---------- Shadow（仅用于浮层与可交互升起） ---------- */
+  --tywk-shadow-1: 0 6px 18px rgba(24, 31, 28, 0.07);
+  --tywk-shadow-2: 0 12px 36px rgba(28, 35, 31, 0.09);
+  --tywk-shadow-3: 0 18px 50px rgba(30, 43, 36, 0.12);
+  --tywk-shadow-inset-line: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+
+  /* ---------- Motion ---------- */
+  --tywk-motion-instant: 120ms;   /* 按下、勾选 */
+  --tywk-motion-fast: 200ms;      /* hover、菜单开合 */
+  --tywk-motion-base: 320ms;      /* 面板展开、内容切换 */
+  --tywk-motion-slow: 560ms;      /* 内容进入、滚动揭示 */
+  --tywk-ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+  --tywk-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --tywk-motion-distance: 12px;   /* 位移基准 */
+
+  /* ---------- Breakpoints（参考值，组件内用媒体查询） ---------- */
+  --tywk-breakpoint-sm: 640px;
+  --tywk-breakpoint-md: 768px;
+  --tywk-breakpoint-lg: 1024px;
+  --tywk-breakpoint-xl: 1280px;
+}
+
+/* 减少动态效果：所有 TYWK 动效降级为瞬时状态切换 */
+@media (prefers-reduced-motion: reduce) {
+  .tywk-motion-safe,
+  .tywk-motion-safe::before,
+  .tywk-motion-safe::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

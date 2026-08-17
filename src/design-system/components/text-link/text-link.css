@@ -1,0 +1,48 @@
+/* TYWK/Action/TextLink — 文字链接 */
+
+.tywk-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--tywk-font-sans);
+  font-size: inherit;
+  color: var(--tywk-accent-deep);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 下划线从左侧划入，提示可点击而不打断阅读 */
+.tywk-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -0.2em;
+  height: 1px;
+  background: currentColor;
+  transition: right var(--tywk-motion-base) var(--tywk-ease-standard);
+}
+
+.tywk-link:hover::after,
+.tywk-link:focus-visible::after {
+  right: 0;
+}
+
+.tywk-link:focus-visible {
+  outline: 2px solid var(--tywk-focus-ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.tywk-link--quiet {
+  color: var(--tywk-text-secondary);
+}
+
+.tywk-link__arrow {
+  transition: transform var(--tywk-motion-fast) var(--tywk-ease-out);
+}
+
+.tywk-link:hover .tywk-link__arrow {
+  transform: translateX(2px);
+}

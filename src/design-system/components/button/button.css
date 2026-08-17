@@ -1,0 +1,65 @@
+/* TYWK/Action/Button — 按钮（Primary / Secondary） */
+
+.tywk-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tywk-space-2);
+  white-space: nowrap;
+  user-select: none;
+  font-family: var(--tywk-font-sans);
+  border: none;
+  cursor: pointer;
+  transition:
+    background-color var(--tywk-motion-fast) var(--tywk-ease-out),
+    color var(--tywk-motion-fast) var(--tywk-ease-out),
+    transform var(--tywk-motion-instant) var(--tywk-ease-out),
+    box-shadow var(--tywk-motion-fast) var(--tywk-ease-out);
+}
+
+.tywk-btn:focus-visible {
+  outline: 2px solid var(--tywk-focus-ring);
+  outline-offset: 2px;
+}
+
+.tywk-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/* 尺寸 */
+.tywk-btn--lg { height: 44px; padding: 0 18px; border-radius: var(--tywk-radius-md); font-size: 1rem; font-weight: 500; }
+.tywk-btn--md { height: 32px; padding: 0 12px; border-radius: var(--tywk-radius-md); font-size: var(--tywk-text-small-size); font-weight: 500; }
+.tywk-btn--sm { height: 26px; padding: 0 8px; border-radius: var(--tywk-radius-sm); font-size: 0.75rem; font-weight: 500; }
+
+/* 类型 */
+.tywk-btn--primary { background: var(--tywk-ink); color: var(--tywk-surface); }
+.tywk-btn--primary:hover:not(:disabled) { background: var(--tywk-ink-hover); }
+
+.tywk-btn--secondary { background: var(--tywk-fill-1); color: var(--tywk-text-primary); }
+.tywk-btn--secondary:hover:not(:disabled) { background: var(--tywk-fill-2); }
+
+/* 禁用 */
+.tywk-btn:disabled {
+  cursor: not-allowed;
+  background: var(--tywk-disabled-bg);
+  color: var(--tywk-disabled-text);
+}
+
+/* 加载 */
+.tywk-btn__spinner {
+  width: 0.9em;
+  height: 0.9em;
+  border-radius: var(--tywk-radius-full);
+  border: 1.5px solid currentColor;
+  border-top-color: transparent;
+  opacity: 0.8;
+  animation: tywk-spin 700ms linear infinite;
+}
+
+@keyframes tywk-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tywk-btn__spinner { animation-duration: 1200ms; }
+}

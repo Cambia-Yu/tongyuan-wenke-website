@@ -1,0 +1,85 @@
+/* TYWK/Navigation/SectionTabs — 横向页面章节导航 */
+
+.tywk-section-tabs {
+  position: sticky;
+  top: 64px;
+  z-index: 40;
+  padding: var(--tywk-space-2) 0;
+  background: color-mix(in srgb, var(--tywk-page-bg) 82%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.tywk-section-tabs__viewport {
+  max-width: var(--tywk-content-max);
+  margin: 0 auto;
+  padding: 0 var(--tywk-page-gutter);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tywk-section-tabs__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.tywk-section-tabs__track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  gap: var(--tywk-space-3);
+  padding: 6px;
+  border-radius: var(--tywk-radius-lg);
+  background: var(--tywk-paper);
+}
+
+.tywk-section-tabs__label {
+  flex: 0 0 auto;
+  padding: 0 var(--tywk-space-2);
+  font-size: var(--tywk-text-caption-size);
+  color: var(--tywk-text-quaternary);
+}
+
+.tywk-section-tabs__list {
+  display: flex;
+  gap: var(--tywk-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tywk-section-tabs__link {
+  display: block;
+  padding: var(--tywk-space-2) var(--tywk-space-3);
+  border-radius: var(--tywk-radius-md);
+  font-size: var(--tywk-text-small-size);
+  color: var(--tywk-text-tertiary);
+  text-decoration: none;
+  transition:
+    background-color var(--tywk-motion-fast) var(--tywk-ease-out),
+    color var(--tywk-motion-fast) var(--tywk-ease-out),
+    box-shadow var(--tywk-motion-fast) var(--tywk-ease-out);
+}
+
+.tywk-section-tabs__link:hover {
+  background: color-mix(in srgb, var(--tywk-surface) 60%, transparent);
+  color: var(--tywk-text-primary);
+}
+
+.tywk-section-tabs__link:focus-visible {
+  outline: 2px solid var(--tywk-focus-ring);
+  outline-offset: 2px;
+}
+
+.tywk-section-tabs__link.is-active {
+  background: var(--tywk-surface);
+  color: var(--tywk-text-primary);
+  font-weight: 500;
+  box-shadow: var(--tywk-shadow-1);
+}
+
+@media (min-width: 1024px) {
+  .tywk-section-tabs__viewport {
+    padding-right: var(--tywk-page-gutter-lg);
+    padding-left: var(--tywk-page-gutter-lg);
+  }
+}

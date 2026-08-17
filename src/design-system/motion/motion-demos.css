@@ -1,0 +1,79 @@
+/* TYWK/Motion — 动效样板样式（Menu Open/Close、Content Enter） */
+
+.tywk-motion-demo {
+  border-radius: var(--tywk-radius-xl);
+  background: var(--tywk-paper);
+  padding: var(--tywk-space-8);
+}
+
+/* --- Menu Open / Close：下拉面板 --- */
+.tywk-menu-demo__panel {
+  width: 220px;
+  margin-top: var(--tywk-space-2);
+  padding: 6px;
+  border-radius: var(--tywk-radius-md);
+  background: var(--tywk-surface);
+  box-shadow: inset 0 0 0 1px var(--tywk-border-subtle), var(--tywk-shadow-3);
+  transform-origin: top center;
+  transition:
+    opacity var(--tywk-motion-fast) var(--tywk-ease-standard),
+    transform var(--tywk-motion-fast) var(--tywk-ease-standard);
+}
+
+.tywk-menu-demo__panel[data-open='false'] {
+  opacity: 0;
+  transform: translateY(-4px) scale(0.98);
+  pointer-events: none;
+}
+
+.tywk-menu-demo__panel[data-open='true'] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.tywk-menu-demo__item {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-radius: var(--tywk-radius-sm);
+  background: transparent;
+  text-align: left;
+  font-size: var(--tywk-text-small-size);
+  color: var(--tywk-text-primary);
+  cursor: pointer;
+  transition: background-color var(--tywk-motion-instant) var(--tywk-ease-out);
+}
+
+.tywk-menu-demo__item:hover {
+  background: var(--tywk-paper);
+}
+
+/* --- Content Enter：内容进入 --- */
+.tywk-enter-demo__card {
+  padding: var(--tywk-space-6);
+  border-radius: var(--tywk-radius-lg);
+  background: var(--tywk-surface);
+  box-shadow: var(--tywk-shadow-inset-line);
+}
+
+.tywk-enter-demo__card.is-entered {
+  animation: tywk-content-enter var(--tywk-motion-slow) var(--tywk-ease-standard) both;
+}
+
+.tywk-enter-demo__card.is-entered:nth-child(2) { animation-delay: 80ms; }
+.tywk-enter-demo__card.is-entered:nth-child(3) { animation-delay: 160ms; }
+
+.tywk-enter-demo__card h4 {
+  margin: 0;
+  font-size: var(--tywk-text-card-size);
+  font-weight: 600;
+  color: var(--tywk-text-primary);
+}
+
+.tywk-enter-demo__card p {
+  margin: var(--tywk-space-2) 0 0;
+  font-size: var(--tywk-text-small-size);
+  line-height: var(--tywk-text-small-line);
+  color: var(--tywk-text-secondary);
+}

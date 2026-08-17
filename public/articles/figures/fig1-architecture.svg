@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="470" viewBox="0 0 800 470">
+  <defs>
+    <style>
+      .t { font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif; }
+      .layer { fill: rgba(0,0,0,0.55); font-size: 13px; font-weight: 600; }
+      .label { fill: rgba(0,0,0,0.85); font-size: 13px; }
+      .small { fill: rgba(0,0,0,0.5); font-size: 11.5px; }
+      .accent { fill: #1783ff; font-size: 11.5px; font-weight: 600; }
+      .cap { fill: rgba(0,0,0,0.4); font-size: 11px; }
+    </style>
+  </defs>
+  <rect width="800" height="470" fill="#ffffff"/>
+
+  <!-- 图题 -->
+  <text class="t cap" x="24" y="30">图 1 · 异常协同系统总体架构——存量系统不动，新增协同层</text>
+
+  <!-- 应用层 -->
+  <rect x="88" y="52" width="688" height="88" rx="8" fill="#ffffff" stroke="rgba(0,0,0,0.13)"/>
+  <text class="t layer" x="24" y="82">应用层</text>
+  <text class="t cap" x="24" y="100">业务入口</text>
+  <rect x="112" y="72" width="300" height="48" rx="6" fill="rgba(0,0,0,0.03)" stroke="rgba(0,0,0,0.10)"/>
+  <text class="t label" x="130" y="101">异常协同工作台</text>
+  <rect x="432" y="72" width="320" height="48" rx="6" fill="rgba(0,0,0,0.03)" stroke="rgba(0,0,0,0.10)"/>
+  <text class="t label" x="450" y="101">处理结果归档（证据链 · 经验库）</text>
+
+  <!-- 连接 -->
+  <line x1="400" y1="140" x2="400" y2="164" stroke="rgba(0,0,0,0.25)"/>
+
+  <!-- 协同层 -->
+  <rect x="88" y="164" width="688" height="156" rx="8" fill="#ffffff" stroke="#1783ff" stroke-opacity="0.45"/>
+  <text class="t layer" x="24" y="194" fill="#1783ff">协同层</text>
+  <text class="t cap" x="24" y="212">本系统新增</text>
+  <text class="t label" x="112" y="188" font-weight="600">异常事件编排与语义协同</text>
+  <text class="t small" x="112" y="208">拉齐异常上下文 · 触发处理动作 · 全过程留痕</text>
+
+  <!-- 五个智能体 -->
+  <g>
+    <rect x="112" y="222" width="122" height="56" rx="6" fill="#ffffff" stroke="rgba(0,0,0,0.13)"/>
+    <text class="t label" x="124" y="245">总控智能体</text>
+    <text class="t small" x="124" y="263">统筹 · 不进入流程</text>
+
+    <rect x="246" y="222" width="122" height="56" rx="6" fill="#ffffff" stroke="rgba(0,0,0,0.13)"/>
+    <text class="t label" x="258" y="245">合同智能体</text>
+    <text class="t small" x="258" y="263">条款摘要</text>
+
+    <rect x="380" y="222" width="122" height="56" rx="6" fill="#ffffff" stroke="rgba(0,0,0,0.13)"/>
+    <text class="t label" x="392" y="245">财务智能体</text>
+    <text class="t small" x="392" y="263">金额比对</text>
+
+    <rect x="514" y="222" width="122" height="56" rx="6" fill="#ffffff" stroke="rgba(0,0,0,0.13)"/>
+    <text class="t label" x="526" y="245">供应商协同</text>
+    <text class="t small" x="526" y="263">沟通口径建议</text>
+
+    <rect x="648" y="222" width="104" height="56" rx="6" fill="#ffffff" stroke="rgba(0,0,0,0.13)"/>
+    <text class="t label" x="660" y="245">归档智能体</text>
+    <text class="t small" x="660" y="263">结构化留痕</text>
+  </g>
+
+  <!-- 规则引擎 -->
+  <rect x="380" y="288" width="250" height="24" rx="4" fill="rgba(23,131,255,0.06)" stroke="#1783ff" stroke-opacity="0.35"/>
+  <text class="t accent" x="394" y="304">规则引擎 + SQL 模板：金额计算链路（确定性）</text>
+
+  <!-- 连接 -->
+  <line x1="400" y1="320" x2="400" y2="344" stroke="rgba(0,0,0,0.25)"/>
+
+  <!-- 系统层 -->
+  <rect x="88" y="344" width="688" height="76" rx="8" fill="rgba(0,0,0,0.02)" stroke="rgba(0,0,0,0.13)"/>
+  <text class="t layer" x="24" y="374">系统层</text>
+  <text class="t cap" x="24" y="392">不做改造</text>
+  <g class="t">
+    <rect x="112" y="364" width="140" height="36" rx="6" fill="#ffffff" stroke="rgba(0,0,0,0.13)"/>
+    <text class="t label" x="128" y="387">ERP</text>
+    <rect x="268" y="364" width="140" height="36" rx="6" fill="#ffffff" stroke="rgba(0,0,0,0.13)"/>
+    <text class="t label" x="284" y="387">CRM</text>
+    <rect x="424" y="364" width="140" height="36" rx="6" fill="#ffffff" stroke="rgba(0,0,0,0.13)"/>
+    <text class="t label" x="440" y="387">合同系统</text>
+    <rect x="580" y="364" width="172" height="36" rx="6" fill="#ffffff" stroke="rgba(0,0,0,0.13)"/>
+    <text class="t label" x="596" y="387">财务系统</text>
+  </g>
+
+  <text class="t cap" x="24" y="450">存量系统继续管理交易与主数据，协同层仅在异常发生时介入。</text>
+</svg>

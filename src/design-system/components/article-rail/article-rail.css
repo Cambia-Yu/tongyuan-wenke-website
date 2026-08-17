@@ -1,0 +1,62 @@
+/* TYWK/Navigation/ArticleRail — 纵向文章导航 */
+
+.tywk-article-rail {
+  position: sticky;
+  top: 112px;
+  padding: var(--tywk-space-2);
+  border-radius: var(--tywk-radius-xl);
+  background: var(--tywk-paper);
+}
+
+.tywk-article-rail__label {
+  padding: var(--tywk-space-2) var(--tywk-space-3);
+  font-size: var(--tywk-text-caption-size);
+  color: var(--tywk-text-tertiary);
+}
+
+.tywk-article-rail__list {
+  display: grid;
+  gap: var(--tywk-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tywk-article-rail__link {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 4px;
+  align-items: baseline;
+  padding: 10px 12px;
+  border-radius: var(--tywk-radius-md);
+  font-size: var(--tywk-text-small-size);
+  color: var(--tywk-text-tertiary);
+  text-decoration: none;
+  transition:
+    background-color var(--tywk-motion-fast) var(--tywk-ease-out),
+    color var(--tywk-motion-fast) var(--tywk-ease-out),
+    box-shadow var(--tywk-motion-fast) var(--tywk-ease-out);
+}
+
+.tywk-article-rail__link:hover {
+  background: color-mix(in srgb, var(--tywk-surface) 60%, transparent);
+  color: var(--tywk-text-primary);
+}
+
+.tywk-article-rail__link:focus-visible {
+  outline: 2px solid var(--tywk-focus-ring);
+  outline-offset: 2px;
+}
+
+.tywk-article-rail__link.is-active {
+  background: var(--tywk-surface);
+  color: var(--tywk-text-primary);
+  font-weight: 500;
+  box-shadow: var(--tywk-shadow-1);
+}
+
+.tywk-article-rail__index {
+  font-size: var(--tywk-text-caption-size);
+  color: var(--tywk-text-quaternary);
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,40 @@
+/* TYWK/Status/StatusBadge — 状态标记 */
+
+.tywk-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  padding: 3px 10px;
+  border-radius: var(--tywk-radius-full);
+  font-family: var(--tywk-font-sans);
+  font-size: var(--tywk-text-caption-size);
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.tywk-status__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--tywk-radius-full);
+  background: currentColor;
+}
+
+.tywk-status--success { color: var(--tywk-success); background: var(--tywk-success-soft); }
+.tywk-status--pending { color: var(--tywk-warning); background: var(--tywk-warning-soft); }
+.tywk-status--error   { color: var(--tywk-error);   background: var(--tywk-error-soft); }
+.tywk-status--neutral { color: var(--tywk-text-tertiary); background: var(--tywk-fill-1); }
+
+/* 进行中的状态允许缓慢呼吸，其余状态不使用循环动画 */
+.tywk-status--pending .tywk-status__dot {
+  animation: tywk-status-pulse 2.4s var(--tywk-ease-out) infinite;
+}
+
+@keyframes tywk-status-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tywk-status--pending .tywk-status__dot { animation: none; }
+}
