@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { Navigate, Routes, Route } from 'react-router'
 import Home from './pages/Home'
+import WebsiteDirection from './pages/WebsiteDirection'
 import Scenarios from './pages/Scenarios'
 import Practices from './pages/Practices'
 import PracticeArticle from './pages/PracticeArticle'
@@ -21,7 +22,8 @@ export default function App() {
     <>
       <ScrollManager />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<WebsiteDirection />} />
+        <Route path="/legacy" element={<Home />} />
         <Route path="/services" element={<Scenarios />} />
         <Route path="/projects" element={<Practices />} />
         <Route path="/projects/settlement-coordination" element={<PracticeArticle />} />
