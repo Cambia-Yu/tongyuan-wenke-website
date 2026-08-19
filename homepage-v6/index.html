@@ -1,21 +1,16 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>通元问科</title></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="twk-home-version" content="v7-forward"><title>通元问科</title></head>
 <body>
 <script>
 (async()=>{
   try{
-    const source='https://raw.githubusercontent.com/Cambia-Yu/tongyuan-wenke-website/redesign/website-v1/homepage-v3/index.html?v='+Date.now();
+    const source='https://raw.githubusercontent.com/Cambia-Yu/tongyuan-wenke-website/redesign/website-v1/homepage-v7/index.html?v='+Date.now();
     const r=await fetch(source,{cache:'no-store'});
     if(!r.ok) throw new Error('source '+r.status);
-    let html=await r.text();
-    html=html.replace('https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@01b56b2a9fae7cfcdc89c9d2ee468c71300340b8/homepage-v3/home-v1.css','data:text/css,');
-    html=html.replace('https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@229a2a3a6f8b07d6318bd025b7270489ad371e38/homepage-v3/home-v2-texture.css','data:text/css,');
-    html=html.replace('</head>','<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@e4e39843254997544666d0a347fab050b325decf/homepage-v6/home.css"></head>');
-    html=html.replace('https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@5fa4aabb656a7f73a8901a8ec1404f95e5c29640/homepage-v3/home-v1.js','https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@53903eecd2a45194d26263f52e9434192036bc87/homepage-v6/home.js');
-    html=html.replace('<body>','<body id="top">');
+    const html=await r.text();
     document.open();document.write(html);document.close();
-  }catch(err){console.error(err);document.body.innerHTML='<div style="font:14px system-ui;padding:32px">Homepage preview load failed.</div>'}
+  }catch(err){console.error(err);document.body.innerHTML='<div style="font:14px system-ui;padding:32px;color:#0d1830">Homepage preview load failed.</div>'}
 })();
 </script>
 </body>
