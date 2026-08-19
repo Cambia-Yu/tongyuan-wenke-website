@@ -5,15 +5,12 @@
 <script>
 (async()=>{
   try{
-    const source='https://raw.githubusercontent.com/Cambia-Yu/tongyuan-wenke-website/redesign/website-v1/homepage-v3/index.html?v='+Date.now();
-    const response=await fetch(source,{cache:'no-store'});
-    if(!response.ok) throw new Error('source '+response.status);
-    const html=await response.text();
+    const source='https://raw.githubusercontent.com/Cambia-Yu/tongyuan-wenke-website/redesign/website-v1/homepage-v6/index.html?v='+Date.now();
+    const r=await fetch(source,{cache:'no-store'});
+    if(!r.ok) throw new Error('source '+r.status);
+    const html=await r.text();
     document.open();document.write(html);document.close();
-  }catch(err){
-    console.error(err);
-    document.body.innerHTML='<div style="font:14px system-ui;padding:32px;color:#0d1830">Homepage preview load failed.</div>';
-  }
+  }catch(err){console.error(err);document.body.innerHTML='<div style="font:14px system-ui;padding:32px;color:#0d1830">Homepage preview load failed.</div>'}
 })();
 </script>
 </body>
