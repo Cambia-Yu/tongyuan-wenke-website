@@ -1,0 +1,9 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>通元问科</title></head><body><script>
+(async()=>{
+  const source='https://raw.githubusercontent.com/Cambia-Yu/tongyuan-wenke-website/redesign/website-v1/homepage-v3/index.html?v='+Date.now();
+  let html=await fetch(source,{cache:'no-store'}).then(r=>r.text());
+  html=html.replace(/<link rel="stylesheet" href="https:\/\/cdn\.jsdelivr\.net\/gh\/Cambia-Yu\/tongyuan-wenke-website@01b56b2a9fae7cfcdc89c9d2ee468c71300340b8\/homepage-v3\/home-v1\.css">\s*<link rel="stylesheet" href="https:\/\/cdn\.jsdelivr\.net\/gh\/Cambia-Yu\/tongyuan-wenke-website@229a2a3a6f8b07d6318bd025b7270489ad371e38\/homepage-v3\/home-v2-texture\.css">/, '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@4375d750ba82ecc626a892fc0b864d9c8fbfb216/homepage-v5/home.css">');
+  html=html.replace('<script src="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@5fa4aabb656a7f73a8901a8ec1404f95e5c29640/homepage-v3/home-v1.js"><\\/script>','<script src="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@6dfab50e85bd57d2bcb2f7963e2159c100cca5a3/homepage-v5/home.js"><\\/script>');
+  document.open();document.write(html);document.close();
+})().catch(()=>{document.body.innerHTML='<div style="font:14px system-ui;padding:32px">Homepage preview load failed.</div>'});
+<\/script></body></html>
