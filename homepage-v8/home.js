@@ -22,7 +22,6 @@
         const handoffStarted=sv>.015;
         heroNav.classList.toggle('twk8-handoff-hidden',handoffStarted);
 
-        // Fixed nav appears only in the final part of the reveal, and never slides.
         const fixedOpacity=clamp((sv-.78)/.20);
         sticky.style.setProperty('--twk8-nav-opacity',fixedOpacity.toFixed(3));
         sticky.classList.toggle('twk8-nav-interactive',sv>.98);
@@ -35,9 +34,12 @@
       scheduleNavHandoff();
     }
 
-    window.dispatchEvent(new CustomEvent('twk:v8-base-ready'));
+    /* Load the business-scenarios replacement first. Its current script listens for
+       twk:v8-base-ready when the version is v8.1, so the event must be emitted only
+       after the script has executed and installed its listener. */
     const scenarios=document.createElement('script');
     scenarios.src='https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@4a26242c27f6257fbb8d8c8c764d708badd21ca2/homepage-v8/scenarios.js';
+    scenarios.onload=()=>window.dispatchEvent(new CustomEvent('twk:v8-base-ready'));
     scenarios.onerror=()=>console.error('business scenarios module load failed');
     document.head.appendChild(scenarios);
   };
