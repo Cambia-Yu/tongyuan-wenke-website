@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="twk-home-version" content="v8.7"><title>通元问科</title></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="twk-home-version" content="v8.8"><title>通元问科</title></head>
 <body>
 <script>
 (async()=>{
@@ -36,9 +36,9 @@
     const oldHero='<script src="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@96a5ce8d5577b6242f668e6c2f6e29515d9ae988/frozen/hero-v3.9.3.js">'+closeScript;
     const newHero=preboot+'<script src="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@71155dc690c7b5a4633cd9ea7720583d18713a69/homepage-v8/hero-v3.9.4.js">'+closeScript;
     html=html.replace(oldHero,newHero);
-    html=html.replace('</head>','<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@baa0a97220f3f08602c2645aaa0da3366f6d74dd/homepage-v8/home.css"></head>');
-    html=html.replace('https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@5fa4aabb656a7f73a8901a8ec1404f95e5c29640/homepage-v3/home-v1.js','https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@27888005fd4c7309894f83b9b8eabc4c3600d9bb/homepage-v8/home.js');
-    html=html.replace('<body>','<body id="top" data-home-version="v8.7">');
+    html=html.replace('</head>','<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@b8d1160580158e45d29ed1be72e4661b1ba802ba/homepage-v8/home.css"></head>');
+    html=html.replace('https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@5fa4aabb656a7f73a8901a8ec1404f95e5c29640/homepage-v3/home-v1.js','https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@2355ca880dd0412d41d31ad5de7b2be07f5fa14b/homepage-v8/home.js');
+    html=html.replace('<body>','<body id="top" data-home-version="v8.8">');
     document.open();document.write(html);document.close();
   }catch(err){console.error(err);document.body.innerHTML='<div style="font:14px system-ui;padding:32px;color:#0d1830">Page preview load failed.</div>'}
 })();
