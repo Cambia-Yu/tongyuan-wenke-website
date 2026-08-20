@@ -1,7 +1,7 @@
 @import url("https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@9020c67bb58625db123b4231caa6cd6afae37868/homepage-v7/home.css");
 @import url("https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@a7a0e143553a457bd846afd00c4cc3e7c41cf6ab/homepage-v8/scenarios.css");
 
-/* v8.3 — one navigation DOM, two visual phases.
+/* v8.4 — one navigation DOM, two visual phases.
    Hero phase: transparent background + white foreground.
    Services/page phase: the same nav fades back in with a white bar + dark foreground. */
 #nav.twk8-unified-nav{
@@ -27,20 +27,27 @@
   backdrop-filter:blur(16px) saturate(118%)!important;
   -webkit-backdrop-filter:blur(16px) saturate(118%)!important;
 }
-#nav.twk8-unified-nav .brand{font-size:18px;font-weight:650;gap:10px}
+#nav.twk8-unified-nav .brand{font-size:20px;font-weight:650;gap:10px}
 #nav.twk8-unified-nav .mark{width:16px;height:24px}
-#nav.twk8-unified-nav .links{gap:34px;font-size:13px}
+#nav.twk8-unified-nav .links{gap:34px;font-size:15px}
 #nav.twk8-unified-nav .links a{opacity:.76;transition:opacity .2s ease}
 #nav.twk8-unified-nav .links a:hover{opacity:1}
 #nav.twk8-unified-nav .links a:first-child{font-weight:600;opacity:1}
-#nav.twk8-unified-nav .cta{font-size:12px;padding:11px 18px;box-shadow:0 10px 26px rgba(47,103,244,.18)}
+#nav.twk8-unified-nav .cta{font-size:14px;padding:11px 18px;box-shadow:0 10px 26px rgba(47,103,244,.18)}
+
+/* Homepage scenario heading clean-up. */
+.twk8-scenarios>.eyebrow{display:none!important}
+.twk8-scenarios>.title{margin-top:0!important}
+.twk8-scenarios>.intro{max-width:900px!important}
+.twk8-scenarios>.intro .twk8-intro-line{display:inline-block}
 
 /* V7 creates a second fixed nav before V8 takes over; keep it removed defensively. */
 .twk7-sticky-nav{display:none!important}
 
 @media(max-width:760px){
   #nav.twk8-unified-nav{height:68px!important;padding:0 18px!important}
-  #nav.twk8-unified-nav .brand{font-size:17px}
+  #nav.twk8-unified-nav .brand{font-size:19px}
   #nav.twk8-unified-nav .links{display:none}
-  #nav.twk8-unified-nav .cta{font-size:12px;padding:10px 14px}
+  #nav.twk8-unified-nav .cta{font-size:14px;padding:10px 14px}
+  .twk8-scenarios>.intro .twk8-intro-line{display:inline}
 }
