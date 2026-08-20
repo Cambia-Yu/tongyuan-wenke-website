@@ -1,7 +1,22 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="twk-home-version" content="v8.8"><title>通元问科</title></head>
-<body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="twk-home-version" content="v8.9">
+<meta name="theme-color" content="#05070a">
+<title>通元问科</title>
+<link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@b8d1160580158e45d29ed1be72e4661b1ba802ba/homepage-v8/home.css">
+<link rel="preload" as="script" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@71155dc690c7b5a4633cd9ea7720583d18713a69/homepage-v8/hero-v3.9.4.js">
+<link rel="preload" as="script" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@2355ca880dd0412d41d31ad5de7b2be07f5fa14b/homepage-v8/home.js">
+<style>
+html,body{margin:0;background:#05070a}
+body[data-twk-shell="1"]{min-height:500vh;overflow-y:auto}
+#twk-shell{position:fixed;inset:0;background:#05070a;pointer-events:none}
+</style>
+</head>
+<body data-twk-shell="1">
+<div id="twk-shell" aria-hidden="true"></div>
 <script>
 (async()=>{
   try{
@@ -12,10 +27,17 @@
     const article=params.get('article');
     const rawBase='https://raw.githubusercontent.com/Cambia-Yu/tongyuan-wenke-website/redesign/website-v1/';
 
-    const writeRemote=async path=>{
-      const r=await fetch(rawBase+path+'?v='+Date.now(),{cache:'no-store'});
+    /* Keep navigation responsive while remote page sources are arriving.
+       The temporary shell is deliberately tall so early wheel / trackpad input
+       becomes real scroll position instead of being dropped. document.write()
+       keeps the same Window, so the finished Hero starts at that position. */
+    const fetchRemote=async path=>{
+      const r=await fetch(rawBase+path,{cache:'default'});
       if(!r.ok) throw new Error('page source '+r.status);
-      document.open();document.write(await r.text());document.close();
+      return r.text();
+    };
+    const writeRemote=async path=>{
+      document.open();document.write(await fetchRemote(path));document.close();
     };
 
     if(domain==='supply-chain'){await writeRemote('domains/supply-chain/index.html');return;}
@@ -24,10 +46,7 @@
     if(page==='blog'){await writeRemote('blog/index.html');return;}
     if(article==='deepseek-harness'){await writeRemote('blog/deepseek-harness/index.html');return;}
 
-    const source=rawBase+'homepage-v3/index.html?v='+Date.now();
-    const r=await fetch(source,{cache:'no-store'});
-    if(!r.ok) throw new Error('source '+r.status);
-    let html=await r.text();
+    let html=await fetchRemote('homepage-v3/index.html');
     html=html.replace('https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@01b56b2a9fae7cfcdc89c9d2ee468c71300340b8/homepage-v3/home-v1.css','data:text/css,');
     html=html.replace('https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@229a2a3a6f8b07d6318bd025b7270489ad371e38/homepage-v3/home-v2-texture.css','data:text/css,');
 
@@ -38,9 +57,9 @@
     html=html.replace(oldHero,newHero);
     html=html.replace('</head>','<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@b8d1160580158e45d29ed1be72e4661b1ba802ba/homepage-v8/home.css"></head>');
     html=html.replace('https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@5fa4aabb656a7f73a8901a8ec1404f95e5c29640/homepage-v3/home-v1.js','https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@2355ca880dd0412d41d31ad5de7b2be07f5fa14b/homepage-v8/home.js');
-    html=html.replace('<body>','<body id="top" data-home-version="v8.8">');
+    html=html.replace('<body>','<body id="top" data-home-version="v8.9">');
     document.open();document.write(html);document.close();
-  }catch(err){console.error(err);document.body.innerHTML='<div style="font:14px system-ui;padding:32px;color:#0d1830">Page preview load failed.</div>'}
+  }catch(err){console.error(err);document.body.innerHTML='<div style="font:14px system-ui;padding:32px;color:#d9e0ec;background:#05070a;min-height:100vh">Page preview load failed.</div>'}
 })();
 </script>
 </body>
