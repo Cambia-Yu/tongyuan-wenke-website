@@ -92,10 +92,15 @@
    services.style.opacity=sv;
    services.style.transform=`translateY(${(1-sv)*18}px)`;
 
-   /* v3.9.4: the same navigation remains present for the entire page.
-      Only its foreground theme changes as the background becomes light. */
-   nav.style.opacity='1';
-   nav.classList.toggle('light',white>.54 || sv>.04);
+   /* v3.9.4 nav choreography:
+      1) transparent Hero nav fades out with the Hero copy;
+      2) it stays fully absent through the white interstitial;
+      3) the same nav fades back in with the Services reveal, now as a white bar. */
+   const heroNavOpacity=1-tf;
+   const serviceNavOpacity=sv;
+   nav.style.opacity=clamp(Math.max(heroNavOpacity,serviceNavOpacity));
+   nav.classList.toggle('light',serviceNavOpacity>.002);
+   nav.style.pointerEvents=(heroNavOpacity>.08 || serviceNavOpacity>.92)?'auto':'none';
 
    if(p<RESET_P && !handoffRunning){
      handoff=0;
@@ -134,8 +139,8 @@
    handoffRaf=requestAnimationFrame(tick);
  }
 
- /* Direct-navigation API. This is intentionally separate from the normal scroll
-    narrative: clicking Services should not force a visitor to replay the Hero. */
+ /* Direct-navigation API. Clicking Services bypasses the scroll narrative and lands
+    directly in the completed Services state, including the white navigation bar. */
  function jumpToServices(){
    if(handoffRaf) cancelAnimationFrame(handoffRaf);
    handoff=1;
