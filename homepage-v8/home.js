@@ -2,10 +2,8 @@
   const base=document.createElement('script');
   base.src='https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@9296a3dc5a40de33639edcca74628ea907d3a78d/homepage-v7/home.js';
   base.onload=()=>{
-    document.documentElement.dataset.homeVersion='v8.5';
+    document.documentElement.dataset.homeVersion='v8.7';
 
-    /* One navigation element for the whole homepage.
-       Hero uses the transparent phase; the post-Hero page uses the white-bar phase. */
     const heroNav=document.getElementById('nav');
     const oldSticky=document.querySelector('.twk7-sticky-nav');
     if(oldSticky) oldSticky.remove();
@@ -16,7 +14,7 @@
 
       const links=heroNav.querySelector('.links');
       if(links){
-        links.innerHTML='<a href="#top">首页</a><span class="twk8-service-wrap"><a href="#serviceStage" class="twk8-service-trigger" data-direct-services>服务领域 <i>⌄</i></a><span class="twk8-service-menu"><a href="/?domain=supply-chain"><span>物流与供应链</span><b>→</b></a><span class="twk8-service-disabled"><span>教育</span><b>→</b></span></span></span><a href="#blog">博客</a><a href="#contact">关于我们</a>';
+        links.innerHTML='<a href="#top">首页</a><span class="twk8-service-wrap"><a href="#serviceStage" class="twk8-service-trigger" data-direct-services>服务领域 <i>⌄</i></a><span class="twk8-service-menu"><a href="/?domain=supply-chain"><span>物流与供应链</span><b>→</b></a><span class="twk8-service-disabled"><span>教育</span><b>→</b></span></span></span><a href="/?page=blog">博客</a><a href="#contact">关于我们</a>';
       }
       const cta=heroNav.querySelector('.cta');
       if(cta){cta.textContent='开始交流 →';cta.setAttribute('href','#contact')}
@@ -35,6 +33,44 @@
       }
     }
 
+    /* Make the first mature service-domain card a real entry. */
+    const serviceCards=[...document.querySelectorAll('.twk7-service-card')];
+    if(serviceCards[0]) serviceCards[0].setAttribute('href','/?domain=supply-chain');
+
+    /* Replace placeholder blog content with real essays. */
+    const blog=document.getElementById('blog');
+    if(blog){
+      const head=blog.querySelector('.twk7-section-head');
+      const sectionLink=head?.querySelector('.twk7-section-link');
+      if(sectionLink){sectionLink.textContent='查看全部文章 →';sectionLink.setAttribute('href','/?page=blog')}
+      const headCopy=head?.querySelector('div');
+      if(headCopy){
+        const eyebrow=headCopy.querySelector('.twk7-eyebrow');
+        const title=headCopy.querySelector('h2');
+        const desc=headCopy.querySelector('p');
+        if(eyebrow) eyebrow.textContent='BLOG · 03';
+        if(title) title.textContent='博客';
+        if(desc) desc.textContent='关于企业、AI 与真实工作的长期观察。';
+      }
+      const gallery=blog.querySelector('.twk7-gallery');
+      if(gallery){
+        gallery.classList.add('twk8-real-blog-grid');
+        gallery.innerHTML=`
+          <a class="twk7-blog-card twk8-blog-card-featured" href="/?article=deepseek-harness">
+            <div class="twk8-blog-visual twk8-blog-visual-harness" aria-hidden="true"><span class="twk8-bv-label">MODEL</span><span class="twk8-bv-core">HARNESS</span><span class="twk8-bv-label right">REAL WORK</span><i></i><i></i></div>
+            <h3>从 DeepSeek Harness 看企业 AI 转型的下一阶段</h3>
+            <div class="twk7-blog-meta">Cambia · 2026.08.18</div>
+            <div class="twk7-blog-excerpt">当模型能力越来越容易获得，企业真正需要积累的，开始越来越多地落在模型怎样进入真实工作。</div>
+          </a>
+          <div class="twk7-blog-card twk8-blog-card-upcoming" aria-label="正在整理">
+            <div class="twk8-blog-visual twk8-blog-visual-boundary" aria-hidden="true"><span>企业既有能力</span><b>AI</b><span>新的能力边界</span></div>
+            <h3>AI 正在重新定义企业的能力边界</h3>
+            <div class="twk7-blog-meta">Cambia · 正在整理</div>
+            <div class="twk7-blog-excerpt">从一瓶香开始，重新理解 AI 除了改变效率之外，是否也正在改变一家企业“能做什么”。</div>
+          </div>`;
+      }
+    }
+
     const navigateFromQuery=()=>{
       const section=new URLSearchParams(location.search).get('section');
       if(!section) return;
@@ -42,25 +78,17 @@
         requestAnimationFrame(()=>window.twkHero?.jumpToServices?.());
         return;
       }
-      const target={blog:'#blog',about:'#contact',contact:'#contact'}[section];
-      if(target){
-        requestAnimationFrame(()=>document.querySelector(target)?.scrollIntoView({block:'start',behavior:'auto'}));
-      }
+      const target={about:'#contact',contact:'#contact'}[section];
+      if(target){requestAnimationFrame(()=>document.querySelector(target)?.scrollIntoView({block:'start',behavior:'auto'}))}
     };
 
-    /* The business-scenarios module permanently replaces the old cooperation section. */
     const scenarios=document.createElement('script');
     scenarios.src='https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@4a26242c27f6257fbb8d8c8c764d708badd21ca2/homepage-v8/scenarios.js';
     scenarios.onload=()=>{
       window.dispatchEvent(new CustomEvent('twk:v8-base-ready'));
-
-      /* Homepage heading polish requested after visual review:
-         remove the English section counter and force the explanatory copy into two intentional lines. */
       document.querySelector('.twk8-scenarios > .eyebrow')?.remove();
       const intro=document.querySelector('.twk8-scenarios > .intro');
-      if(intro){
-        intro.innerHTML='<span class="twk8-intro-line">同一个业务问题，从进入材料，到形成中间判断，再到得到最终结果。</span><br><span class="twk8-intro-line">模块会自动讲完整个过程，用户也可以切换不同场景查看。</span>';
-      }
+      if(intro){intro.innerHTML='<span class="twk8-intro-line">同一个业务问题，从进入材料，到形成中间判断，再到得到最终结果。</span><br><span class="twk8-intro-line">模块会自动讲完整个过程，用户也可以切换不同场景查看。</span>'}
       navigateFromQuery();
     };
     scenarios.onerror=()=>console.error('business scenarios module load failed');
