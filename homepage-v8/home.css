@@ -1,66 +1,17 @@
 @import url("https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@9020c67bb58625db123b4231caa6cd6afae37868/homepage-v7/home.css");
 @import url("https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@a7a0e143553a457bd846afd00c4cc3e7c41cf6ab/homepage-v8/scenarios.css");
 
-/* v8.5 — one navigation DOM, two visual phases.
-   Hero phase: transparent background + white foreground.
-   Services/page phase: the same nav fades back in with a white bar + dark foreground. */
-#nav.twk8-unified-nav{
-  position:fixed!important;
-  top:0!important;
-  left:0!important;
-  right:0!important;
-  z-index:160!important;
-  height:76px!important;
-  padding:0 42px!important;
-  visibility:visible!important;
-  pointer-events:auto;
-  justify-content:flex-start!important;
-  background:transparent!important;
-  box-shadow:none!important;
-  backdrop-filter:none!important;
-  -webkit-backdrop-filter:none!important;
-  transition:opacity .12s linear,color .24s ease,background .24s ease,box-shadow .24s ease,backdrop-filter .24s ease!important;
-}
-#nav.twk8-unified-nav.light{
-  color:#101827!important;
-  background:rgba(250,252,255,.92)!important;
-  box-shadow:0 1px 0 rgba(8,18,36,.08),0 10px 30px rgba(32,54,95,.035)!important;
-  backdrop-filter:blur(16px) saturate(118%)!important;
-  -webkit-backdrop-filter:blur(16px) saturate(118%)!important;
-}
-#nav.twk8-unified-nav .brand{font-size:20px;font-weight:650;gap:10px}
-#nav.twk8-unified-nav .mark{width:16px;height:24px}
-#nav.twk8-unified-nav .links{margin-left:auto;gap:34px;font-size:15px;align-self:stretch}
-#nav.twk8-unified-nav .links>a,#nav.twk8-unified-nav .twk8-service-trigger{opacity:.76;transition:opacity .2s ease}
-#nav.twk8-unified-nav .links>a:hover,#nav.twk8-unified-nav .twk8-service-wrap:hover>.twk8-service-trigger{opacity:1}
-#nav.twk8-unified-nav .links>a:first-child{font-weight:600;opacity:1}
-#nav.twk8-unified-nav .cta{margin-left:26px;font-size:14px;padding:11px 18px;box-shadow:0 10px 26px rgba(47,103,244,.18)}
+/* v8.7 — one navigation DOM, two visual phases. */
+#nav.twk8-unified-nav{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:160!important;height:76px!important;padding:0 42px!important;visibility:visible!important;pointer-events:auto;justify-content:flex-start!important;background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;transition:opacity .12s linear,color .24s ease,background .24s ease,box-shadow .24s ease,backdrop-filter .24s ease!important}
+#nav.twk8-unified-nav.light{color:#101827!important;background:rgba(250,252,255,.92)!important;box-shadow:0 1px 0 rgba(8,18,36,.08),0 10px 30px rgba(32,54,95,.035)!important;backdrop-filter:blur(16px) saturate(118%)!important;-webkit-backdrop-filter:blur(16px) saturate(118%)!important}
+#nav.twk8-unified-nav .brand{font-size:20px;font-weight:650;gap:10px}#nav.twk8-unified-nav .mark{width:16px;height:24px}#nav.twk8-unified-nav .links{margin-left:auto;gap:34px;font-size:15px;align-self:stretch}#nav.twk8-unified-nav .links>a,#nav.twk8-unified-nav .twk8-service-trigger{opacity:.76;transition:opacity .2s ease}#nav.twk8-unified-nav .links>a:hover,#nav.twk8-unified-nav .twk8-service-wrap:hover>.twk8-service-trigger{opacity:1}#nav.twk8-unified-nav .links>a:first-child{font-weight:600;opacity:1}#nav.twk8-unified-nav .cta{margin-left:26px;font-size:14px;padding:11px 18px;box-shadow:0 10px 26px rgba(47,103,244,.18)}
 
-/* Service-domain hover menu. The trigger itself remains clickable and returns to the
-   services section on the homepage; the menu is only for entering domain pages. */
-.twk8-service-wrap{position:relative;display:flex;align-items:center;height:76px}
-.twk8-service-trigger{display:flex;align-items:center;gap:6px;height:76px}
-.twk8-service-trigger i{font-style:normal;font-size:10px;transform:translateY(-1px)}
-.twk8-service-menu{position:absolute;top:64px;left:50%;width:250px;padding:10px;transform:translate(-50%,-6px);border:1px solid rgba(58,78,123,.10);border-radius:16px;background:rgba(255,255,255,.97);box-shadow:0 22px 54px rgba(45,66,112,.12);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .1s ease,transform .16s cubic-bezier(.2,.72,.18,1),visibility .1s linear;color:#26344f}
-.twk8-service-wrap:hover .twk8-service-menu,.twk8-service-wrap:focus-within .twk8-service-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0)}
-.twk8-service-menu>a,.twk8-service-disabled{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 14px;border-radius:11px;font-size:14px;line-height:1.2;color:#26344f}
-.twk8-service-menu>a:hover{background:#f5f8fd}
-.twk8-service-menu b,.twk8-service-disabled b{font-weight:400;color:#6c7be0;font-size:16px}
-.twk8-service-disabled{color:#a2abba;cursor:default}
+.twk8-service-wrap{position:relative;display:flex;align-items:center;height:76px}.twk8-service-trigger{display:flex;align-items:center;gap:6px;height:76px}.twk8-service-trigger i{font-style:normal;font-size:10px;transform:translateY(-1px)}.twk8-service-menu{position:absolute;top:64px;left:50%;width:250px;padding:10px;transform:translate(-50%,-6px);border:1px solid rgba(58,78,123,.10);border-radius:16px;background:rgba(255,255,255,.97);box-shadow:0 22px 54px rgba(45,66,112,.12);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .1s ease,transform .16s cubic-bezier(.2,.72,.18,1),visibility .1s linear;color:#26344f}.twk8-service-wrap:hover .twk8-service-menu,.twk8-service-wrap:focus-within .twk8-service-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0)}.twk8-service-menu>a,.twk8-service-disabled{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 14px;border-radius:11px;font-size:14px;line-height:1.2;color:#26344f}.twk8-service-menu>a:hover{background:#f5f8fd}.twk8-service-menu b,.twk8-service-disabled b{font-weight:400;color:#6c7be0;font-size:16px}.twk8-service-disabled{color:#a2abba;cursor:default}
 
-/* Homepage scenario heading clean-up. */
-.twk8-scenarios>.eyebrow{display:none!important}
-.twk8-scenarios>.title{margin-top:0!important}
-.twk8-scenarios>.intro{max-width:900px!important}
-.twk8-scenarios>.intro .twk8-intro-line{display:inline-block}
+.twk8-scenarios>.eyebrow{display:none!important}.twk8-scenarios>.title{margin-top:0!important}.twk8-scenarios>.intro{max-width:900px!important}.twk8-scenarios>.intro .twk8-intro-line{display:inline-block}.twk7-sticky-nav{display:none!important}
 
-/* V7 creates a second fixed nav before V8 takes over; keep it removed defensively. */
-.twk7-sticky-nav{display:none!important}
+/* Homepage blog is now real content rather than three concept placeholders. */
+.twk8-real-blog-grid{grid-template-columns:1.22fr .78fr!important;gap:24px!important}.twk8-real-blog-grid .twk7-blog-card{min-height:486px}.twk8-blog-card-featured h3{font-size:clamp(27px,2.3vw,35px)!important}.twk8-blog-card-upcoming{cursor:default}.twk8-blog-visual{height:248px;border-radius:22px;border:1px solid rgba(61,83,130,.09);background:linear-gradient(145deg,#fbfcff,#edf3fb);margin-bottom:24px;position:relative;overflow:hidden}.twk8-blog-visual:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 16%,rgba(91,112,238,.14),transparent 36%)}.twk8-blog-visual-harness{display:grid;grid-template-columns:1fr 1.25fr 1fr;align-items:center;gap:14px;padding:28px}.twk8-bv-label,.twk8-bv-core{position:relative;z-index:1;padding:22px 12px;border-radius:15px;text-align:center;font-size:10px;letter-spacing:.08em;border:1px solid rgba(64,84,130,.08);background:rgba(255,255,255,.82);color:#77849a}.twk8-bv-core{font-family:var(--twk7-display);font-size:19px;letter-spacing:0;color:#4f5fc9;background:rgba(92,104,218,.065)}.twk8-blog-visual-harness>i{position:absolute;top:50%;width:11%;height:1px;background:rgba(85,103,201,.25)}.twk8-blog-visual-harness>i:nth-of-type(1){left:27%}.twk8-blog-visual-harness>i:nth-of-type(2){right:27%}.twk8-blog-visual-boundary{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;padding:28px}.twk8-blog-visual-boundary span{position:relative;z-index:1;padding:20px 12px;border-radius:15px;text-align:center;font-size:10px;color:#748197;background:rgba(255,255,255,.8);border:1px solid rgba(64,84,130,.08)}.twk8-blog-visual-boundary b{position:relative;z-index:1;font-family:var(--twk7-display);font-size:36px;font-weight:500;color:#5a69d2}.twk8-blog-card-upcoming{opacity:.86}.twk8-real-blog-grid .twk7-blog-meta{margin-top:auto}
 
-@media(max-width:760px){
-  #nav.twk8-unified-nav{height:68px!important;padding:0 18px!important}
-  #nav.twk8-unified-nav .brand{font-size:19px}
-  #nav.twk8-unified-nav .links{display:none}
-  #nav.twk8-unified-nav .cta{margin-left:auto;font-size:14px;padding:10px 14px}
-  .twk8-scenarios>.intro .twk8-intro-line{display:inline}
-}
+@media(max-width:900px){.twk8-real-blog-grid{grid-template-columns:1fr!important}.twk8-real-blog-grid .twk7-blog-card{min-height:auto}}
+@media(max-width:760px){#nav.twk8-unified-nav{height:68px!important;padding:0 18px!important}#nav.twk8-unified-nav .brand{font-size:19px}#nav.twk8-unified-nav .links{display:none}#nav.twk8-unified-nav .cta{margin-left:auto;font-size:14px;padding:10px 14px}.twk8-scenarios>.intro .twk8-intro-line{display:inline}.twk8-blog-visual{height:210px}.twk8-blog-visual-harness{padding:18px;gap:8px}.twk8-bv-label{padding:16px 8px;font-size:9px}.twk8-bv-core{padding:18px 8px;font-size:16px}}
