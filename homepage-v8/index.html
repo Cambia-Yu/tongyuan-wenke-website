@@ -1,30 +1,39 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="twk-home-version" content="v8.5"><title>通元问科</title></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="twk-home-version" content="v8.6"><title>通元问科</title></head>
 <body>
 <script>
 (async()=>{
   try{
     const params=new URLSearchParams(location.search);
     const domain=params.get('domain');
-    if(domain==='supply-chain'){
-      const u='https://raw.githubusercontent.com/Cambia-Yu/tongyuan-wenke-website/redesign/website-v1/domains/supply-chain/index.html?v='+Date.now();
-      const r=await fetch(u,{cache:'no-store'});
-      if(!r.ok) throw new Error('domain source '+r.status);
-      document.open();document.write(await r.text());document.close();
-      return;
-    }
+    const caseId=params.get('case');
+    const rawBase='https://raw.githubusercontent.com/Cambia-Yu/tongyuan-wenke-website/redesign/website-v1/';
 
-    const source='https://raw.githubusercontent.com/Cambia-Yu/tongyuan-wenke-website/redesign/website-v1/homepage-v3/index.html?v='+Date.now();
+    const writeRemote=async path=>{
+      const r=await fetch(rawBase+path+'?v='+Date.now(),{cache:'no-store'});
+      if(!r.ok) throw new Error('page source '+r.status);
+      document.open();document.write(await r.text());document.close();
+    };
+
+    if(domain==='supply-chain'){await writeRemote('domains/supply-chain/index.html');return;}
+    if(caseId==='supply-chain-research'){await writeRemote('cases/supply-chain-research/index.html');return;}
+    if(caseId==='settlement-exception'){await writeRemote('cases/settlement-exception/index.html');return;}
+
+    const source=rawBase+'homepage-v3/index.html?v='+Date.now();
     const r=await fetch(source,{cache:'no-store'});
     if(!r.ok) throw new Error('source '+r.status);
     let html=await r.text();
     html=html.replace('https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@01b56b2a9fae7cfcdc89c9d2ee468c71300340b8/homepage-v3/home-v1.css','data:text/css,');
     html=html.replace('https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@229a2a3a6f8b07d6318bd025b7270489ad371e38/homepage-v3/home-v2-texture.css','data:text/css,');
-    html=html.replace('https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@96a5ce8d5577b6242f668e6c2f6e29515d9ae988/frozen/hero-v3.9.3.js','https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@52f1bad8223911e5707ab4bc4ac13497bb8c3283/homepage-v8/hero-v3.9.4.js');
+
+    const preboot=`<script>(()=>{const D=5.041667,c=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)),s=t=>t*t*(3-2*t),m=(p,a,b)=>s(c((p-a)/(b-a)));let raf=0;function render(){raf=0;const track=document.getElementById('track'),video=document.getElementById('video'),copy=document.getElementById('heroCopy'),hint=document.getElementById('hint'),wash=document.getElementById('wash'),shade=document.getElementById('shade'),nav=document.getElementById('nav');if(!track||!video)return;const r=track.getBoundingClientRect(),total=Math.max(1,track.offsetHeight-innerHeight),top=scrollY+r.top,p=c((scrollY-top)/total),vp=Math.pow(m(p,.018,.88),1.10);if(video.readyState>=1){const t=vp*D;if(Math.abs(video.currentTime-t)>.012)video.currentTime=t}const tf=m(p,.28,.62);if(copy){copy.style.opacity=1-tf;copy.style.transform='translateY(calc(-43% - '+(tf*30)+'px))'}if(hint)hint.style.opacity=1-m(p,.04,.18);if(wash)wash.style.opacity=m(p,.78,.94);if(shade)shade.style.opacity=1-m(p,.58,.86);if(nav)nav.style.opacity=1-tf}function schedule(){if(!raf)raf=requestAnimationFrame(render)}addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);document.getElementById('video')?.addEventListener('loadedmetadata',schedule);window.__twkStopHeroPreboot=()=>{removeEventListener('scroll',schedule);removeEventListener('resize',schedule);if(raf)cancelAnimationFrame(raf);delete window.__twkStopHeroPreboot};schedule()})();<\/script>`;
+    const oldHero='<script src="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@96a5ce8d5577b6242f668e6c2f6e29515d9ae988/frozen/hero-v3.9.3.js"></script>';
+    const newHero=preboot+'<script src="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@71155dc690c7b5a4633cd9ea7720583d18713a69/homepage-v8/hero-v3.9.4.js"></script>';
+    html=html.replace(oldHero,newHero);
     html=html.replace('</head>','<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@d43d56790c9597e295aaa6a7dc8cfc8805a5335f/homepage-v8/home.css"></head>');
     html=html.replace('https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@5fa4aabb656a7f73a8901a8ec1404f95e5c29640/homepage-v3/home-v1.js','https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@8c17387a735204498842c1ae49cc3bb1272f8457/homepage-v8/home.js');
-    html=html.replace('<body>','<body id="top" data-home-version="v8.5">');
+    html=html.replace('<body>','<body id="top" data-home-version="v8.6">');
     document.open();document.write(html);document.close();
   }catch(err){console.error(err);document.body.innerHTML='<div style="font:14px system-ui;padding:32px;color:#0d1830">Page preview load failed.</div>'}
 })();
