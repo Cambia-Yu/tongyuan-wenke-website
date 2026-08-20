@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>在 ERP 之上加一层“异常协同”｜通元问科</title>
+<meta name="description" content="一次供应链结算异常协同实践：在现有 ERP、CRM、合同和财务系统之上，组织异常上下文、确定性校验与处理留痕。" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@8ff727db815fc2f614bd526cd15c194ddfad4726/cases/case.css" />
+</head>
+<body>
+<header class="site-nav">
+  <a class="brand" href="/"><span class="mark"></span><span>通元问科</span></a>
+  <div class="nav-right">
+    <nav class="links"><a href="/">首页</a><div class="service-wrap"><a class="service-trigger" href="/?section=services">服务领域 <i>⌄</i></a><div class="menu"><a href="/?domain=supply-chain"><span>物流与供应链</span><b>→</b></a><span class="disabled"><span>教育</span><b>→</b></span></div></div><a href="/?section=blog">博客</a><a href="/?section=about">关于我们</a></nav>
+    <a class="cta" href="/?section=contact">开始交流 →</a>
+  </div>
+</header>
+
+<main class="article-shell">
+  <article>
+    <header class="article-hero reveal">
+      <div class="crumb"><a href="/?domain=supply-chain">物流与供应链</a><span>/</span><span>项目实践</span></div>
+      <h1>在 ERP 之上加一层“异常协同”</h1>
+      <p class="deck">系统能发现数字不一致，但异常真正进入处理后，仍要回到合同、补充协议、订单、回单、供应商说明和历史沟通里重新拼上下文。这个项目处理的是异常发生之后的工作。</p>
+      <div class="article-meta"><span><i></i>供应链结算</span><span><i></i>异常协同与证据留痕</span></div>
+      <div class="hero-figure" aria-label="供应链结算异常协同结构示意">
+        <div class="figure-inner">
+          <div class="figure-card"><small>EXISTING SYSTEMS</small><strong>ERP / CRM / 合同 / 财务</strong><p>继续承担交易数据、主数据和正式记录，不重做原有系统。</p><div class="figure-lines"><i></i><i></i><i></i></div></div>
+          <div class="figure-card"><small>EXCEPTION CONTEXT</small><strong>异常协同层</strong><p>围绕单笔异常拉齐材料、口径、角色和历史处理依据。</p><div class="figure-lines"><i></i><i></i><i></i></div></div>
+          <div class="figure-card"><small>BUSINESS DECISION</small><strong>处理与留痕</strong><p>确定性计算交给规则，语义理解交给模型，关键判断交给业务人员。</p><div class="figure-accent">原系统继续工作 · 异常发生时协同层介入</div></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="article-layout">
+      <aside class="toc"><b>本文结构</b><a href="#background">业务背景</a><a href="#reframe">问题重构</a><a href="#architecture">系统架构</a><a href="#boundary">模型与规则</a></aside>
+      <div class="prose">
+        <section id="background" class="reveal">
+          <div class="section-no">01 · BACKGROUND</div>
+          <h2>差异很容易被看见，结论却需要重新拼出来</h2>
+          <p>企业已经有 ERP、CRM、合同系统和财务系统，交易和主数据并不缺。问题出现在异常之后：系统提示金额不一致，业务人员需要回到合同、补充协议、订单、回单、供应商说明和沟通记录里逐项确认。</p>
+          <p>这些材料分散在不同系统和不同角色手里。一笔异常处理得越久，越容易出现“谁已经确认过什么”“最终依据是什么”“为什么这样处理”无法快速还原的问题。</p>
+          <div class="pullquote">系统能发现差异，但不能自动回答：<em>这笔差异接下来该怎么处理。</em></div>
+        </section>
+
+        <section id="reframe" class="reveal">
+          <div class="section-no">02 · REFRAME</div>
+          <h2>把“查一笔账”拆成一条异常处理链</h2>
+          <p>项目先把异常处理动作拆成四步：发现异常、拉齐信息、形成结论、留痕归档。真正耗时的部分主要集中在第二步和第三步，因为上下文没有对齐之前，任何结论都不稳定。</p>
+          <div class="diagram">
+            <div class="diagram-title">异常处理链</div>
+            <div class="diagram-grid"><div class="diagram-item"><b>发现异常</b><span>金额、版本、口径等差异进入处理</span></div><div class="diagram-item"><b>拉齐上下文</b><span>合同、订单、回单、说明、历史记录归到同一事件</span></div><div class="diagram-item"><b>结论与留痕</b><span>核对依据、记录参与角色和最终处理结果</span></div></div>
+          </div>
+          <p>这样以后，系统处理的对象就不再是一个孤立的数字差额，而是一笔带材料、口径、角色和处理状态的异常事件。</p>
+        </section>
+
+        <section id="architecture" class="reveal">
+          <div class="section-no">03 · ARCHITECTURE</div>
+          <h2>原有系统不动，在异常发生时增加一层协同</h2>
+          <p>架构没有重做交易系统。ERP、CRM、合同和财务系统继续承担正式数据记录；新增的异常协同层只在异常发生以后介入，负责拉齐上下文、触发处理动作和保存全过程记录。</p>
+          <div class="decision"><b>系统边界</b><p>原系统继续管理交易和主数据；协同层围绕“异常事件”组织材料、判断和处理过程；业务工作界面让参与人员看到当前依据、处理状态和需要确认的事项。</p></div>
+          <p>这层结构的价值不在于把所有系统合并，而在于给过去没有系统承接的“异常处理过程”一个明确的位置。</p>
+        </section>
+
+        <section id="boundary" class="reveal">
+          <div class="section-no">04 · KEY DECISION</div>
+          <h2>模型负责理解，规则负责计算</h2>
+          <p>合同条款、供应商说明和历史沟通属于非结构化材料，模型适合用来提取计价方式、付款条件、数量口径和解释性信息；金额、税率、币种以及含税/不含税等确定性计算则不交给模型自由推导。</p>
+          <div class="diagram">
+            <div class="diagram-title">职责划分</div>
+            <div class="diagram-grid"><div class="diagram-item"><b>模型</b><span>提取、理解、归纳非结构化业务材料</span></div><div class="diagram-item"><b>规则 / SQL</b><span>金额比对、税率、币种、确定性计算</span></div><div class="diagram-item"><b>业务人员</b><span>核对关键依据并确认最终业务结论</span></div></div>
+          </div>
+          <p>处理完成后，系统把被采用的依据、参与人员、关键判断和最终结论一起留下。下一次出现类似异常时，历史处理路径不再只存在个人记忆里。</p>
+        </section>
+      </div>
+    </div>
+  </article>
+
+  <div class="article-end"><div class="article-end-inner"><a class="back-domain" href="/?domain=supply-chain">← 返回物流与供应链</a><a class="next-case" href="/?case=supply-chain-research">上一篇：供应链研究知识库 →</a></div></div>
+  <footer class="footer"><span>通元问科 · Tongyuan Wenke</span><span>企业 AI 项目实践</span></footer>
+</main>
+<script>(()=>{const es=[...document.querySelectorAll('.reveal')];if(!('IntersectionObserver'in window)){es.forEach(e=>e.classList.add('is-visible'));return}const io=new IntersectionObserver(xs=>xs.forEach(x=>{if(x.isIntersecting){x.target.classList.add('is-visible');io.unobserve(x.target)}}),{threshold:.1});es.forEach(e=>io.observe(e))})();</script>
+</body>
+</html>
