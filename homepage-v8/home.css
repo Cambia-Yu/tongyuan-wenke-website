@@ -1,8 +1,9 @@
 @import url("https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@9020c67bb58625db123b4231caa6cd6afae37868/homepage-v7/home.css");
 @import url("https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@a7a0e143553a457bd846afd00c4cc3e7c41cf6ab/homepage-v8/scenarios.css");
 
-/* v8.2 — one navigation for Hero and the rest of the homepage.
-   It is deliberately transparent at the beginning: no white header slab, no nav swap. */
+/* v8.3 — one navigation DOM, two visual phases.
+   Hero phase: transparent background + white foreground.
+   Services/page phase: the same nav fades back in with a white bar + dark foreground. */
 #nav.twk8-unified-nav{
   position:fixed!important;
   top:0!important;
@@ -12,19 +13,19 @@
   height:76px!important;
   padding:0 42px!important;
   visibility:visible!important;
-  opacity:1!important;
-  pointer-events:auto!important;
+  pointer-events:auto;
   background:transparent!important;
   box-shadow:none!important;
   backdrop-filter:none!important;
   -webkit-backdrop-filter:none!important;
-  transition:color .28s ease!important;
+  transition:opacity .12s linear,color .24s ease,background .24s ease,box-shadow .24s ease,backdrop-filter .24s ease!important;
 }
 #nav.twk8-unified-nav.light{
-  background:transparent!important;
-  box-shadow:none!important;
-  backdrop-filter:none!important;
-  -webkit-backdrop-filter:none!important;
+  color:#101827!important;
+  background:rgba(250,252,255,.92)!important;
+  box-shadow:0 1px 0 rgba(8,18,36,.08),0 10px 30px rgba(32,54,95,.035)!important;
+  backdrop-filter:blur(16px) saturate(118%)!important;
+  -webkit-backdrop-filter:blur(16px) saturate(118%)!important;
 }
 #nav.twk8-unified-nav .brand{font-size:18px;font-weight:650;gap:10px}
 #nav.twk8-unified-nav .mark{width:16px;height:24px}
@@ -34,8 +35,7 @@
 #nav.twk8-unified-nav .links a:first-child{font-weight:600;opacity:1}
 #nav.twk8-unified-nav .cta{font-size:12px;padding:11px 18px;box-shadow:0 10px 26px rgba(47,103,244,.18)}
 
-/* V7 creates a second fixed nav before V8 takes over; hide it defensively even if a
-   cached script leaves the detached element around for a frame. */
+/* V7 creates a second fixed nav before V8 takes over; keep it removed defensively. */
 .twk7-sticky-nav{display:none!important}
 
 @media(max-width:760px){
