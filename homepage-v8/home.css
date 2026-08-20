@@ -1,2 +1,13 @@
 @import url("https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@9020c67bb58625db123b4231caa6cd6afae37868/homepage-v7/home.css");
 @import url("https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@a7a0e143553a457bd846afd00c4cc3e7c41cf6ab/homepage-v8/scenarios.css");
+
+/* v8.1 nav handoff: suppress the frozen hero nav once the white/service reveal begins,
+   then let the fixed nav fade in exactly once. No second visual nav is allowed to flash. */
+#nav.twk8-hero-nav.twk8-handoff-hidden{opacity:0!important;pointer-events:none!important}
+.twk7-sticky-nav.twk8-sticky-nav{
+  transform:none!important;
+  opacity:var(--twk8-nav-opacity,0)!important;
+  transition:opacity .22s ease!important;
+  pointer-events:none!important;
+}
+.twk7-sticky-nav.twk8-sticky-nav.twk8-nav-interactive{pointer-events:auto!important}
