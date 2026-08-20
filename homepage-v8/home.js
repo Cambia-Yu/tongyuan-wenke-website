@@ -2,10 +2,10 @@
   const base=document.createElement('script');
   base.src='https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@9296a3dc5a40de33639edcca74628ea907d3a78d/homepage-v7/home.js';
   base.onload=()=>{
-    document.documentElement.dataset.homeVersion='v8.2';
+    document.documentElement.dataset.homeVersion='v8.4';
 
-    /* v8.2: there is only one navigation element for the whole homepage.
-       Reuse the Hero navigation itself, move it to body, and discard V7's second fixed nav. */
+    /* One navigation element for the whole homepage.
+       Hero uses the transparent phase; the post-Hero page uses the white-bar phase. */
     const heroNav=document.getElementById('nav');
     const oldSticky=document.querySelector('.twk7-sticky-nav');
     if(oldSticky) oldSticky.remove();
@@ -35,11 +35,20 @@
       }
     }
 
-    /* The business-scenarios module remains the permanent replacement for the old
-       cooperation section. Load it before emitting ready so it cannot miss the event. */
+    /* The business-scenarios module permanently replaces the old cooperation section. */
     const scenarios=document.createElement('script');
     scenarios.src='https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@4a26242c27f6257fbb8d8c8c764d708badd21ca2/homepage-v8/scenarios.js';
-    scenarios.onload=()=>window.dispatchEvent(new CustomEvent('twk:v8-base-ready'));
+    scenarios.onload=()=>{
+      window.dispatchEvent(new CustomEvent('twk:v8-base-ready'));
+
+      /* Homepage heading polish requested after visual review:
+         remove the English section counter and force the explanatory copy into two intentional lines. */
+      document.querySelector('.twk8-scenarios > .eyebrow')?.remove();
+      const intro=document.querySelector('.twk8-scenarios > .intro');
+      if(intro){
+        intro.innerHTML='<span class="twk8-intro-line">同一个业务问题，从进入材料，到形成中间判断，再到得到最终结果。</span><br><span class="twk8-intro-line">模块会自动讲完整个过程，用户也可以切换不同场景查看。</span>';
+      }
+    };
     scenarios.onerror=()=>console.error('business scenarios module load failed');
     document.head.appendChild(scenarios);
   };
