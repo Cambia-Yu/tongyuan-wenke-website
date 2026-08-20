@@ -1,4 +1,5 @@
 (()=>{
+ window.__twkStopHeroPreboot?.();
  const track=document.getElementById('track'),video=document.getElementById('video'),copy=document.getElementById('heroCopy'),wash=document.getElementById('wash'),shade=document.getElementById('shade'),nav=document.getElementById('nav'),hint=document.getElementById('hint'),stage=document.getElementById('serviceStage'),services=document.getElementById('services');
  const DURATION=5.041667;
  const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
@@ -92,10 +93,6 @@
    services.style.opacity=sv;
    services.style.transform=`translateY(${(1-sv)*18}px)`;
 
-   /* v3.9.4 nav choreography:
-      1) transparent Hero nav fades out with the Hero copy;
-      2) it stays fully absent through the white interstitial;
-      3) the same nav fades back in with the Services reveal, now as a white bar. */
    const heroNavOpacity=1-tf;
    const serviceNavOpacity=sv;
    nav.style.opacity=clamp(Math.max(heroNavOpacity,serviceNavOpacity));
@@ -139,8 +136,6 @@
    handoffRaf=requestAnimationFrame(tick);
  }
 
- /* Direct-navigation API. Clicking Services bypasses the scroll narrative and lands
-    directly in the completed Services state, including the white navigation bar. */
  function jumpToServices(){
    if(handoffRaf) cancelAnimationFrame(handoffRaf);
    handoff=1;
