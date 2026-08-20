@@ -5,8 +5,7 @@ on:
     branches:
       - redesign/website-v1
     paths:
-      - 'assets/hero-video-base64/**'
-      - '.github/workflows/build-hero-video.yml'
+      - 'assets/.build-hero-video'
 
 permissions:
   contents: write
