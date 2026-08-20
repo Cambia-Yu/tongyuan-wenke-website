@@ -1,13 +1,46 @@
 @import url("https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@9020c67bb58625db123b4231caa6cd6afae37868/homepage-v7/home.css");
 @import url("https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@a7a0e143553a457bd846afd00c4cc3e7c41cf6ab/homepage-v8/scenarios.css");
 
-/* v8.1 nav handoff: suppress the frozen hero nav once the white/service reveal begins,
-   then let the fixed nav fade in exactly once. No second visual nav is allowed to flash. */
-#nav.twk8-hero-nav.twk8-handoff-hidden{opacity:0!important;pointer-events:none!important}
-.twk7-sticky-nav.twk8-sticky-nav{
-  transform:none!important;
-  opacity:var(--twk8-nav-opacity,0)!important;
-  transition:opacity .22s ease!important;
-  pointer-events:none!important;
+/* v8.2 — one navigation for Hero and the rest of the homepage.
+   It is deliberately transparent at the beginning: no white header slab, no nav swap. */
+#nav.twk8-unified-nav{
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  z-index:160!important;
+  height:76px!important;
+  padding:0 42px!important;
+  visibility:visible!important;
+  opacity:1!important;
+  pointer-events:auto!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  transition:color .28s ease!important;
 }
-.twk7-sticky-nav.twk8-sticky-nav.twk8-nav-interactive{pointer-events:auto!important}
+#nav.twk8-unified-nav.light{
+  background:transparent!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+#nav.twk8-unified-nav .brand{font-size:18px;font-weight:650;gap:10px}
+#nav.twk8-unified-nav .mark{width:16px;height:24px}
+#nav.twk8-unified-nav .links{gap:34px;font-size:13px}
+#nav.twk8-unified-nav .links a{opacity:.76;transition:opacity .2s ease}
+#nav.twk8-unified-nav .links a:hover{opacity:1}
+#nav.twk8-unified-nav .links a:first-child{font-weight:600;opacity:1}
+#nav.twk8-unified-nav .cta{font-size:12px;padding:11px 18px;box-shadow:0 10px 26px rgba(47,103,244,.18)}
+
+/* V7 creates a second fixed nav before V8 takes over; hide it defensively even if a
+   cached script leaves the detached element around for a frame. */
+.twk7-sticky-nav{display:none!important}
+
+@media(max-width:760px){
+  #nav.twk8-unified-nav{height:68px!important;padding:0 18px!important}
+  #nav.twk8-unified-nav .brand{font-size:17px}
+  #nav.twk8-unified-nav .links{display:none}
+  #nav.twk8-unified-nav .cta{font-size:12px;padding:10px 14px}
+}
