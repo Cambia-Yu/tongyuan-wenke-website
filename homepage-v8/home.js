@@ -2,41 +2,41 @@
   const base=document.createElement('script');
   base.src='https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@9296a3dc5a40de33639edcca74628ea907d3a78d/homepage-v7/home.js';
   base.onload=()=>{
-    document.documentElement.dataset.homeVersion='v8.1';
-    document.querySelectorAll('a[href="#work"]').forEach(a=>a.textContent='业务场景');
+    document.documentElement.dataset.homeVersion='v8.2';
 
-    /* v8.1: one visual navigation handoff only.
-       The frozen Hero nav fades out as before, but it is prevented from reappearing
-       during the white/service reveal. The fixed nav fades in near reveal completion. */
-    const stage=document.getElementById('serviceStage');
+    /* v8.2: there is only one navigation element for the whole homepage.
+       Reuse the Hero navigation itself, move it to body, and discard V7's second fixed nav. */
     const heroNav=document.getElementById('nav');
-    const sticky=document.querySelector('.twk7-sticky-nav');
-    if(stage&&heroNav&&sticky){
-      heroNav.classList.add('twk8-hero-nav');
-      sticky.classList.add('twk8-sticky-nav');
-      let navRaf=0;
-      const clamp=v=>Math.max(0,Math.min(1,v));
-      const syncNavHandoff=()=>{
-        navRaf=0;
-        const sv=clamp(parseFloat(stage.style.opacity||'0')||0);
-        const handoffStarted=sv>.015;
-        heroNav.classList.toggle('twk8-handoff-hidden',handoffStarted);
+    const oldSticky=document.querySelector('.twk7-sticky-nav');
+    if(oldSticky) oldSticky.remove();
 
-        const fixedOpacity=clamp((sv-.78)/.20);
-        sticky.style.setProperty('--twk8-nav-opacity',fixedOpacity.toFixed(3));
-        sticky.classList.toggle('twk8-nav-interactive',sv>.98);
-      };
-      const scheduleNavHandoff=()=>{
-        if(!navRaf) navRaf=requestAnimationFrame(syncNavHandoff);
-      };
-      new MutationObserver(scheduleNavHandoff).observe(stage,{attributes:true,attributeFilter:['style','class']});
-      addEventListener('scroll',scheduleNavHandoff,{passive:true});
-      scheduleNavHandoff();
+    if(heroNav){
+      heroNav.classList.add('twk8-unified-nav');
+      document.body.appendChild(heroNav);
+
+      const links=heroNav.querySelector('.links');
+      if(links){
+        links.innerHTML='<a href="#top">首页</a><a href="#serviceStage" data-direct-services>服务领域</a><a href="#work">业务场景</a><a href="#blog">博客</a><a href="#contact">关于我们</a>';
+      }
+      const cta=heroNav.querySelector('.cta');
+      if(cta){cta.textContent='开始交流 →';cta.setAttribute('href','#contact')}
+
+      const serviceLink=heroNav.querySelector('[data-direct-services]');
+      if(serviceLink){
+        serviceLink.addEventListener('click',e=>{
+          e.preventDefault();
+          if(window.twkHero?.jumpToServices){
+            window.twkHero.jumpToServices();
+          }else{
+            const track=document.getElementById('track');
+            if(track) scrollTo({top:track.offsetTop+track.offsetHeight-innerHeight,behavior:'auto'});
+          }
+        });
+      }
     }
 
-    /* Load the business-scenarios replacement first. Its current script listens for
-       twk:v8-base-ready when the version is v8.1, so the event must be emitted only
-       after the script has executed and installed its listener. */
+    /* The business-scenarios module remains the permanent replacement for the old
+       cooperation section. Load it before emitting ready so it cannot miss the event. */
     const scenarios=document.createElement('script');
     scenarios.src='https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@4a26242c27f6257fbb8d8c8c764d708badd21ca2/homepage-v8/scenarios.js';
     scenarios.onload=()=>window.dispatchEvent(new CustomEvent('twk:v8-base-ready'));
