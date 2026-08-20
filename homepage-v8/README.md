@@ -1,0 +1,1 @@
+Homepage V8: integrates the approved business-scenarios module into the redesign homepage without changing frozen Hero files.
