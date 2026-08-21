@@ -1,0 +1,33 @@
+@import url('https://cdn.jsdelivr.net/npm/misans@4.1.0/lib/Normal/MiSans-Regular.min.css');
+@import url('https://cdn.jsdelivr.net/npm/misans@4.1.0/lib/Normal/MiSans-Medium.min.css');
+@import url('https://cdn.jsdelivr.net/npm/misans@4.1.0/lib/Normal/MiSans-Bold.min.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.2.6/index.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/noto-serif-sc@5.2.8/index.css');
+
+:root{
+  --twk-sans:'Inter Variable',Inter,'MiSans','PingFang SC','Noto Sans SC','Microsoft YaHei',system-ui,sans-serif;
+  --twk-serif:'Noto Serif SC Variable','Source Han Serif SC','Songti SC',serif;
+  --display:var(--twk-sans);
+  --ui:var(--twk-sans);
+}
+
+html,body,button,input,textarea,select{font-family:var(--twk-sans)}
+h1,h2,h3,h4,h5,h6,
+.brand,.domain-brand,.site-nav,.domain-nav,
+.links,.domain-links,.cta,.domain-cta,
+.eyebrow,.crumb,.article-meta,.meta,
+.project-meta,.project-paths,.toc,.article-toc,
+.diagram,.decision,.article-figure figcaption,
+.blog-foot,.domain-foot,.footer{font-family:var(--twk-sans)!important}
+
+/* Long-form reading copy is the one deliberate serif exception. */
+.article-body p,.article-body li,
+.prose p,.prose li,
+.pullquote{font-family:var(--twk-serif)}
+
+/* Keep embedded UI / diagrams inside long-form pages sans-serif. */
+.article-body .article-figure figcaption,
+.prose .diagram,.prose .diagram *,
+.prose .decision b,.prose .section-no,
+.prose .figure-card,.prose .figure-card *,
+.prose .figure-accent{font-family:var(--twk-sans)}
