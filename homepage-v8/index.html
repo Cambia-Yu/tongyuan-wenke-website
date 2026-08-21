@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="twk-home-version" content="v8.9">
+<meta name="twk-home-version" content="v8.11-scrub-queue">
 <meta name="theme-color" content="#05070a">
 <title>通元问科</title>
 <link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@b8d1160580158e45d29ed1be72e4661b1ba802ba/homepage-v8/home.css">
-<link rel="preload" as="script" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@71155dc690c7b5a4633cd9ea7720583d18713a69/homepage-v8/hero-v3.9.4.js">
+<link rel="preload" as="script" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@80afafe2733e4e9d3704766be226d41bb42ef212/homepage-v8/hero-v3.9.6.js">
 <link rel="preload" as="script" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@2355ca880dd0412d41d31ad5de7b2be07f5fa14b/homepage-v8/home.js">
 <style>
 html,body{margin:0;background:#05070a}
@@ -27,10 +27,9 @@ body[data-twk-shell="1"]{min-height:500vh;overflow-y:auto}
     const article=params.get('article');
     const rawBase='https://raw.githubusercontent.com/Cambia-Yu/tongyuan-wenke-website/redesign/website-v1/';
 
-    /* Keep navigation responsive while remote page sources are arriving.
-       The temporary shell is deliberately tall so early wheel / trackpad input
-       becomes real scroll position instead of being dropped. document.write()
-       keeps the same Window, so the finished Hero starts at that position. */
+    // Keep the temporary document tall so wheel/trackpad input becomes real
+    // scroll position while the remote page source is arriving. Do not touch
+    // video.currentTime here; the canonical scrubber owns media seeking.
     const fetchRemote=async path=>{
       const r=await fetch(rawBase+path,{cache:'default'});
       if(!r.ok) throw new Error('page source '+r.status);
@@ -51,15 +50,18 @@ body[data-twk-shell="1"]{min-height:500vh;overflow-y:auto}
     html=html.replace('https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@229a2a3a6f8b07d6318bd025b7270489ad371e38/homepage-v3/home-v2-texture.css','data:text/css,');
 
     const closeScript='<'+ '/script>';
-    const preboot='<script>'+`(()=>{const D=5.041667,c=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)),s=t=>t*t*(3-2*t),m=(p,a,b)=>s(c((p-a)/(b-a)));let raf=0;function render(){raf=0;const track=document.getElementById('track'),video=document.getElementById('video'),copy=document.getElementById('heroCopy'),hint=document.getElementById('hint'),wash=document.getElementById('wash'),shade=document.getElementById('shade'),nav=document.getElementById('nav');if(!track||!video)return;const r=track.getBoundingClientRect(),total=Math.max(1,track.offsetHeight-innerHeight),top=scrollY+r.top,p=c((scrollY-top)/total),vp=Math.pow(m(p,.018,.88),1.10);if(video.readyState>=1){const t=vp*D;if(Math.abs(video.currentTime-t)>.012)video.currentTime=t}const tf=m(p,.28,.62);if(copy){copy.style.opacity=1-tf;copy.style.transform='translateY(calc(-43% - '+(tf*30)+'px))'}if(hint)hint.style.opacity=1-m(p,.04,.18);if(wash)wash.style.opacity=m(p,.78,.94);if(shade)shade.style.opacity=1-m(p,.58,.86);if(nav)nav.style.opacity=1-tf}function schedule(){if(!raf)raf=requestAnimationFrame(render)}addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);document.getElementById('video')?.addEventListener('loadedmetadata',schedule);window.__twkStopHeroPreboot=()=>{removeEventListener('scroll',schedule);removeEventListener('resize',schedule);if(raf)cancelAnimationFrame(raf);delete window.__twkStopHeroPreboot};schedule()})();`+closeScript;
+    const preboot='<script>'+`(()=>{window.__twkStopHeroPreboot=()=>{delete window.__twkStopHeroPreboot}})();`+closeScript;
     const oldHero='<script src="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@96a5ce8d5577b6242f668e6c2f6e29515d9ae988/frozen/hero-v3.9.3.js">'+closeScript;
-    const newHero=preboot+'<script src="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@71155dc690c7b5a4633cd9ea7720583d18713a69/homepage-v8/hero-v3.9.4.js">'+closeScript;
+    const newHero=preboot+'<script src="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@80afafe2733e4e9d3704766be226d41bb42ef212/homepage-v8/hero-v3.9.6.js">'+closeScript;
     html=html.replace(oldHero,newHero);
     html=html.replace('</head>','<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@b8d1160580158e45d29ed1be72e4661b1ba802ba/homepage-v8/home.css"></head>');
     html=html.replace('https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@5fa4aabb656a7f73a8901a8ec1404f95e5c29640/homepage-v3/home-v1.js','https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@2355ca880dd0412d41d31ad5de7b2be07f5fa14b/homepage-v8/home.js');
-    html=html.replace('<body>','<body id="top" data-home-version="v8.9">');
+    html=html.replace('<body>','<body id="top" data-home-version="v8.11-scrub-queue">');
     document.open();document.write(html);document.close();
-  }catch(err){console.error(err);document.body.innerHTML='<div style="font:14px system-ui;padding:32px;color:#d9e0ec;background:#05070a;min-height:100vh">Page preview load failed.</div>'}
+  }catch(err){
+    console.error(err);
+    document.body.innerHTML='<div style="font:14px system-ui;padding:32px;color:#d9e0ec;background:#05070a;min-height:100vh">Page preview load failed.</div>';
+  }
 })();
 </script>
 </body>
