@@ -1,0 +1,51 @@
+name: Apply Serif 700 to Longform Pages
+
+on:
+  push:
+    branches:
+      - redesign/website-v1
+    paths:
+      - '.github/workflows/apply-serif700.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply-serif700:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: redesign/website-v1
+          fetch-depth: 0
+      - name: Attach canonical typography layer
+        shell: python
+        run: |
+          from pathlib import Path
+
+          href = 'https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@e2024f37acca940401d9c504dd5d765d98d06b5e/shared/typography-v1.css'
+          link = f'<link rel="stylesheet" href="{href}" />'
+          paths = [
+              Path('blog/deepseek-harness/index.html'),
+              Path('cases/supply-chain-research/index.html'),
+              Path('cases/settlement-exception/index.html'),
+          ]
+          for path in paths:
+              text = path.read_text(encoding='utf-8')
+              if href in text:
+                  continue
+              if '</head>' not in text:
+                  raise RuntimeError(f'missing </head>: {path}')
+              text = text.replace('</head>', link + '\n</head>', 1)
+              path.write_text(text, encoding='utf-8')
+      - name: Commit longform typography update
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog/deepseek-harness/index.html cases/supply-chain-research/index.html cases/settlement-exception/index.html
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "apply serif 700 to longform pages"
+          git push origin HEAD:redesign/website-v1
