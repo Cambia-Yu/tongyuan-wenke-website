@@ -6,7 +6,7 @@
 <title>博客｜通元问科</title>
 <meta name="description" content="通元问科关于企业 AI、真实工作与组织变化的长期观察。" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@f1447d6c165df00c2d68efc0497afa39604f70fd/blog/blog.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@9795dc052be01f91aa8a39912944491b2e102151/blog/blog-index-v2.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@d2fc561c7e3e0f5e45d398bf1fc974503e451a22/blog/blog-index-v3.css" />
 </head>
 <body class="blog-index-page">
 <header class="site-nav">
@@ -34,29 +34,29 @@
     </div>
   </section>
 
-  <section class="shell blog-tools reveal" aria-label="博客搜索与筛选">
+  <section class="shell blog-tools reveal" aria-label="博客搜索与排序">
     <div class="search-row">
       <label class="search-box">
-        <span class="visually-hidden" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">搜索文章</span>
+        <span style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">搜索文章</span>
         <input id="blogSearch" type="search" placeholder="搜索文章、主题或关键词" autocomplete="off" />
       </label>
-      <div class="sort-label">按最新发布</div>
-    </div>
-    <div class="filter-row" id="blogFilters" role="group" aria-label="按主题筛选">
-      <button class="filter-btn is-active" type="button" data-filter="all">全部</button>
-      <button class="filter-btn" type="button" data-filter="enterprise-ai">企业 AI</button>
-      <button class="filter-btn" type="button" data-filter="work">工作方式</button>
-      <button class="filter-btn" type="button" data-filter="organization">组织</button>
+      <div class="sort-control" aria-label="按发布时间排序">
+        <span class="sort-title">时间排序</span>
+        <div class="sort-options" role="group" aria-label="排序方式">
+          <button class="sort-btn is-active" type="button" data-sort="desc">最新优先</button>
+          <button class="sort-btn" type="button" data-sort="asc">最早优先</button>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="shell blog-list" id="blogList">
     <div class="list-heading">
-      <h2>最新文章</h2>
+      <h2>文章</h2>
       <span class="result-count" id="resultCount">2 项</span>
     </div>
 
-    <a class="article-row reveal" href="/?article=deepseek-harness" data-blog-item data-state="published" data-tags="enterprise-ai work organization" data-search="从 DeepSeek Harness 看企业 AI 转型的下一阶段 模型 企业 AI Harness Agent 工作方式 组织">
+    <a class="article-row reveal" href="/?article=deepseek-harness" data-blog-item data-state="published" data-date="2026-08-18" data-search="从 DeepSeek Harness 看企业 AI 转型的下一阶段 模型 企业 AI Harness Agent 工作方式 组织">
       <div class="article-copy">
         <div class="article-kicker"><span class="tag">企业 AI</span><span>·</span><span>工作方式</span></div>
         <h2>从 DeepSeek Harness 看企业 AI 转型的下一阶段</h2>
@@ -66,7 +66,7 @@
       <div class="article-media-slot" aria-label="文章封面图位置"></div>
     </a>
 
-    <div class="article-row upcoming reveal" data-blog-item data-state="upcoming" data-tags="enterprise-ai organization" data-search="AI 正在重新定义企业的能力边界 企业 能力边界 组织 AI">
+    <div class="article-row upcoming reveal" data-blog-item data-state="upcoming" data-search="AI 正在重新定义企业的能力边界 企业 能力边界 组织 AI">
       <div class="article-copy">
         <div class="article-kicker"><span class="tag">企业 AI</span><span>·</span><span>待发布</span></div>
         <h3>AI 正在重新定义企业的能力边界</h3>
@@ -82,32 +82,44 @@
 <footer class="shell blog-foot"><span>通元问科 · Tongyuan Wenke</span><span>Blog</span></footer>
 <script>
 (()=>{
+  const list=document.getElementById('blogList');
   const items=[...document.querySelectorAll('[data-blog-item]')];
-  const filters=[...document.querySelectorAll('.filter-btn')];
+  const sortButtons=[...document.querySelectorAll('.sort-btn')];
   const search=document.getElementById('blogSearch');
   const resultCount=document.getElementById('resultCount');
   const empty=document.getElementById('emptyState');
-  let active='all';
+  let sortDir='desc';
 
   const normalize=s=>(s||'').trim().toLowerCase();
-  const apply=()=>{
-    const q=normalize(search?.value);
-    let anyVisible=0;
-    items.forEach(item=>{
-      const tags=(item.dataset.tags||'').split(/\s+/);
-      const categoryOk=active==='all'||tags.includes(active);
-      const searchOk=!q||normalize(item.dataset.search).includes(q)||normalize(item.textContent).includes(q);
-      const visible=categoryOk&&searchOk;
-      item.hidden=!visible;
-      if(visible) anyVisible++;
+  const timeOf=item=>item.dataset.date?new Date(item.dataset.date+'T00:00:00').getTime():0;
+
+  const reorder=()=>{
+    const ordered=[...items].sort((a,b)=>{
+      const aPublished=a.dataset.state==='published';
+      const bPublished=b.dataset.state==='published';
+      if(aPublished!==bPublished) return aPublished?-1:1;
+      if(!aPublished&&!bPublished) return 0;
+      return sortDir==='desc' ? timeOf(b)-timeOf(a) : timeOf(a)-timeOf(b);
     });
-    if(resultCount) resultCount.textContent=`${anyVisible} 项`;
-    if(empty) empty.classList.toggle('is-visible',anyVisible===0);
+    ordered.forEach(item=>list.insertBefore(item,empty));
   };
 
-  filters.forEach(btn=>btn.addEventListener('click',()=>{
-    active=btn.dataset.filter||'all';
-    filters.forEach(x=>x.classList.toggle('is-active',x===btn));
+  const apply=()=>{
+    const q=normalize(search?.value);
+    let visibleCount=0;
+    items.forEach(item=>{
+      const searchOk=!q||normalize(item.dataset.search).includes(q)||normalize(item.textContent).includes(q);
+      item.hidden=!searchOk;
+      if(searchOk) visibleCount++;
+    });
+    reorder();
+    if(resultCount) resultCount.textContent=`${visibleCount} 项`;
+    if(empty) empty.classList.toggle('is-visible',visibleCount===0);
+  };
+
+  sortButtons.forEach(btn=>btn.addEventListener('click',()=>{
+    sortDir=btn.dataset.sort||'desc';
+    sortButtons.forEach(x=>x.classList.toggle('is-active',x===btn));
     apply();
   }));
   search?.addEventListener('input',apply);
