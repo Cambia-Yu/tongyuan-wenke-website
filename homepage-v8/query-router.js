@@ -12,7 +12,7 @@
     article==='deepseek-harness'?'blog/deepseek-harness/index.html':null;
   if(!path) return;
   document.documentElement.style.visibility='hidden';
-  fetch('https://raw.githubusercontent.com/Cambia-Yu/tongyuan-wenke-website/redesign/website-v1/'+path+'?v='+Date.now(),{cache:'no-store'})
+  fetch('https://raw.githubusercontent.com/Cambia-Yu/tongyuan-wenke-website/main/'+path+'?v='+Date.now(),{cache:'no-store'})
     .then(r=>{if(!r.ok) throw new Error(String(r.status)); return r.text()})
     .then(html=>{document.open();document.write(html);document.close()})
     .catch(()=>{document.documentElement.style.visibility='visible'});
