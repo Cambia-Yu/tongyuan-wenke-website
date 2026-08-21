@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="twk-home-version" content="v8.12-typography-toc">
+<meta name="twk-home-version" content="v8.13-serif700">
 <meta name="theme-color" content="#05070a">
 <title>通元问科</title>
 <link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@b8d1160580158e45d29ed1be72e4661b1ba802ba/homepage-v8/home.css">
-<link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@9e884618bd53833a6ac64643db4e0e3de71c9548/shared/typography-v1.css">
+<link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@e2024f37acca940401d9c504dd5d765d98d06b5e/shared/typography-v1.css">
 <link rel="preload" as="script" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@80afafe2733e4e9d3704766be226d41bb42ef212/homepage-v8/hero-v3.9.6.js">
 <link rel="preload" as="script" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@2355ca880dd0412d41d31ad5de7b2be07f5fa14b/homepage-v8/home.js">
 <style>
@@ -27,7 +27,7 @@ body[data-twk-shell="1"]{min-height:500vh;overflow-y:auto}
     const page=params.get('page');
     const article=params.get('article');
     const rawBase='https://raw.githubusercontent.com/Cambia-Yu/tongyuan-wenke-website/redesign/website-v1/';
-    const typeCss='https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@9e884618bd53833a6ac64643db4e0e3de71c9548/shared/typography-v1.css';
+    const typeCss='https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@e2024f37acca940401d9c504dd5d765d98d06b5e/shared/typography-v1.css';
     const blogRefineCss='https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@7c31e23d86e929de317b14a53772bae21fa8750f/blog/article-refine-v1.css';
     const blogTocJs='https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@aafb43cfdff13cd05551b168ffc30e07960c34a2/blog/article-toc-v1.js';
     const supplyRefineCss='https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@08b882c092ba7f4fd8157e3e51b2bcd8ee5e4c98/domains/supply-chain/refine-v1.css';
@@ -72,7 +72,7 @@ body[data-twk-shell="1"]{min-height:500vh;overflow-y:auto}
     html=html.replace(oldHero,newHero);
     html=html.replace('</head>',`<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@b8d1160580158e45d29ed1be72e4661b1ba802ba/homepage-v8/home.css"><link rel="stylesheet" href="${typeCss}"></head>`);
     html=html.replace('https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@5fa4aabb656a7f73a8901a8ec1404f95e5c29640/homepage-v3/home-v1.js','https://cdn.jsdelivr.net/gh/Cambia-Yu/tongyuan-wenke-website@2355ca880dd0412d41d31ad5de7b2be07f5fa14b/homepage-v8/home.js');
-    html=html.replace('<body>','<body id="top" data-home-version="v8.12-typography-toc">');
+    html=html.replace('<body>','<body id="top" data-home-version="v8.13-serif700">');
     document.open();document.write(html);document.close();
   }catch(err){
     console.error(err);
