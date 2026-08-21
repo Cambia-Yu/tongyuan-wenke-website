@@ -45,7 +45,6 @@
     <div class="filter-row" id="blogFilters" role="group" aria-label="按主题筛选">
       <button class="filter-btn is-active" type="button" data-filter="all">全部</button>
       <button class="filter-btn" type="button" data-filter="enterprise-ai">企业 AI</button>
-      <button class="filter-btn" type="button" data-filter="data-assets">数据资产</button>
       <button class="filter-btn" type="button" data-filter="work">工作方式</button>
       <button class="filter-btn" type="button" data-filter="organization">组织</button>
     </div>
@@ -54,7 +53,7 @@
   <section class="shell blog-list" id="blogList">
     <div class="list-heading">
       <h2>最新文章</h2>
-      <span class="result-count" id="resultCount">1 篇</span>
+      <span class="result-count" id="resultCount">2 项</span>
     </div>
 
     <a class="article-row reveal" href="/?article=deepseek-harness" data-blog-item data-state="published" data-tags="enterprise-ai work organization" data-search="从 DeepSeek Harness 看企业 AI 转型的下一阶段 模型 企业 AI Harness Agent 工作方式 组织">
@@ -93,7 +92,6 @@
   const normalize=s=>(s||'').trim().toLowerCase();
   const apply=()=>{
     const q=normalize(search?.value);
-    let publishedVisible=0;
     let anyVisible=0;
     items.forEach(item=>{
       const tags=(item.dataset.tags||'').split(/\s+/);
@@ -101,12 +99,9 @@
       const searchOk=!q||normalize(item.dataset.search).includes(q)||normalize(item.textContent).includes(q);
       const visible=categoryOk&&searchOk;
       item.hidden=!visible;
-      if(visible){
-        anyVisible++;
-        if(item.dataset.state==='published')publishedVisible++;
-      }
+      if(visible) anyVisible++;
     });
-    if(resultCount) resultCount.textContent=`${publishedVisible} 篇`;
+    if(resultCount) resultCount.textContent=`${anyVisible} 项`;
     if(empty) empty.classList.toggle('is-visible',anyVisible===0);
   };
 
