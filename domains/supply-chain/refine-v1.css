@@ -1,0 +1,12 @@
+.project-card{padding-top:36px}
+.project-arrow{display:none!important}
+.project-card h2{font-weight:600;letter-spacing:-.035em;margin-top:38px}
+.project-paths{gap:0}
+.project-paths span{gap:0;font-size:12px;color:#63718b}
+.project-paths b{display:none!important}
+.project-paths span:not(:last-child)::after{content:'—';display:inline-block;margin:0 22px;color:#a0a9b8;font-weight:400;transform:none}
+
+@media(max-width:760px){
+  .project-paths{gap:10px 0}
+  .project-paths span:not(:last-child)::after{margin:0 14px}
+}
