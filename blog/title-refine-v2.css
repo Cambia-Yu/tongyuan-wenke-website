@@ -1,0 +1,16 @@
+.article-hero h1{
+  font-family:'Inter Variable',Inter,'MiSans','PingFang SC','Noto Sans SC','Microsoft YaHei',system-ui,sans-serif!important;
+  font-size:clamp(46px,4.35vw,64px)!important;
+  font-weight:500!important;
+  line-height:1.12!important;
+  letter-spacing:-.028em!important;
+  max-width:1120px!important;
+  text-wrap:balance;
+}
+@media(max-width:760px){
+  .article-hero h1{
+    font-size:clamp(38px,10.8vw,48px)!important;
+    line-height:1.14!important;
+    letter-spacing:-.022em!important;
+  }
+}
