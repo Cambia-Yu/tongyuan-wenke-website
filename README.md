@@ -2,6 +2,27 @@
 
 通元问科企业官网与设计系统。网站用于说明服务领域、公开项目实践、工作方法与合作方式，并通过脱敏业务材料展示企业 AI 项目的判断、验证和实施过程。
 
+## 当前主线（Canonical）
+
+当前最终官网不是早期 React 的 `WebsiteDirection` 页面，也不是 `/legacy` 下的旧版 `Home`。
+
+当前唯一主线由以下目录组成：
+
+- `homepage-v8/`：当前首页 shell、视频 scrubber 与查询路由
+- `blog/`：博客索引与 DeepSeek Harness 长文
+- `cases/`：项目案例长文
+- `domains/`：物流与供应链页面
+- `shared/typography-v1.css`：当前统一字体规则
+
+根路由 `/` 通过 `src/pages/CanonicalSite.tsx` 加载 `main/homepage-v8/index.html`，因此 clone 本仓库后执行 `npm run dev`，打开 `/` 应直接看到当前最终官网。
+
+历史页面仅作为参考保留：
+
+- `/direction-v1`：早期 Website Direction v1 设计方向页
+- `/legacy`：更早的 React 官网
+
+后续修改最终官网时，请优先修改上述 canonical 目录，不要再以 `src/pages/WebsiteDirection.tsx` 或 `src/pages/Home.tsx` 作为当前官网入口。
+
 ## 技术栈
 
 - React 19
@@ -10,6 +31,7 @@
 - Tailwind CSS
 - React Router
 - Motion
+- Canonical 静态页面层（HTML / CSS / JavaScript）
 
 ## 本地运行
 
@@ -18,6 +40,8 @@ npm install
 npm run dev
 ```
 
+默认打开：`http://localhost:3000/`
+
 ## 质量检查
 
 ```bash
@@ -25,16 +49,20 @@ npm run build
 npm run lint
 ```
 
-## 主要路由
+## 当前官网入口
 
-- `/`：首页
-- `/services`：服务领域
-- `/projects`：项目实践
-- `/projects/supply-chain-research-kb-poc`：供应链研究知识库 PoC
-- `/projects/settlement-coordination`：供应链结算异常协同
-- `/approach`：工作方法
-- `/about`：关于我们
-- `/contact`：商务咨询
+- `/`：当前最终官网
+- `/?page=blog`：博客索引
+- `/?article=deepseek-harness`：DeepSeek Harness 长文
+- `/?domain=supply-chain`：物流与供应链
+- `/?case=supply-chain-research`：供应链研究案例
+- `/?case=settlement-exception`：结算异常案例
+
+## 历史 React 页面
+
+- `/direction-v1`：Website Direction v1
+- `/legacy`：早期 React 首页
+- `/services`、`/projects`、`/approach` 等：旧 React 信息架构，保留作为历史实现与素材参考
 - `/design-lab`：设计系统工作台
 
 ## 设计系统
