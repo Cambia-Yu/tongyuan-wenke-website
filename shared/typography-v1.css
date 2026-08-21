@@ -23,7 +23,10 @@ h1,h2,h3,h4,h5,h6,
 /* Long-form reading copy is the one deliberate serif exception. */
 .article-body p,.article-body li,
 .prose p,.prose li,
-.pullquote{font-family:var(--twk-serif)}
+.pullquote{
+  font-family:var(--twk-serif);
+  font-weight:700;
+}
 
 /* Keep embedded UI / diagrams inside long-form pages sans-serif. */
 .article-body .article-figure figcaption,
